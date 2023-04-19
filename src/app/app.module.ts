@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 
 import { StyleClassModule } from 'primeng/styleclass';
 import { InputTextModule } from 'primeng/inputtext';
+import { TooltipModule } from 'primeng/tooltip';
 import { ButtonModule } from 'primeng/button'
 import { TableModule } from 'primeng/table';
 import { BadgeModule } from 'primeng/badge';
@@ -19,7 +20,8 @@ import { BadgeModule } from 'primeng/badge';
     InputTextModule,
     ButtonModule,
     TableModule,
-    BadgeModule
+    BadgeModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
