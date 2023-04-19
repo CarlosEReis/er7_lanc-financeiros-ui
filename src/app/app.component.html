@@ -25,4 +25,40 @@
     </div>
 
   </div>
+
+  <div class="grid">
+    <div class="col-12">
+      <hr>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="col-12">
+
+      <p-table [value]="lancamentos">
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Pessoa</th>
+            <th>Descrição</th>
+            <th class="text-center">Vencimento</th>
+            <th class="text-center">Pagamento</th>
+            <th class="text-right">Valor</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-lancamento>
+          <tr>
+            <td>{{lancamento.pessoa}}</td>
+            <td>{{lancamento.descricao}}</td>
+            <td class="text-center">{{lancamento.dataVencimento}}</td>
+            <td class="text-center">{{lancamento.dataPagamento}}</td>
+            <td class="text-right">{{lancamento.valor}}</td>
+          </tr>
+        </ng-template>
+
+      </p-table>
+
+    </div>
+  </div>
 </div>
