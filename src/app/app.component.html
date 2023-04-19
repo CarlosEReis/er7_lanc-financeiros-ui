@@ -1,19 +1,28 @@
-  <div class="flex flex-wrap align-items-center justify-content-center card-container blue-container">
-    <div class="border-round bg-blue-100  p-3 m-3">
-      <div class="grid grid-nogutter surface-section text-800">
-        <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
-            <section>
-                <span class="block text-6xl font-bold mb-1">Bem vindo ao ER7Money</span>
-                <div class="text-5xl text-primary font-bold mb-3">A nova forma de gerir seus gastos</div>
-                <p class="mt-0 mb-4 text-700 line-height-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                
-                <button pButton pRipple label="Cadastre-se" type="button" class="mr-3 p-button-raised"></button>
-                <button pButton pRipple label="Saiba +" type="button" class="p-button-outlined"></button>
-            </section>
-        </div>
-        <div class="col-12 md:col-6 overflow-hidden">
-            <img src="https://blocks.primeng.org/assets/images/blocks/hero/hero-1.png" alt="Image" class="md:ml-auto block md:h-full" style="clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%)">
-        </div>
-      </div>
+<div class="container">
+  <div class="grid">
+
+    <div class="col-12">
+      <h1>Lançamentos</h1>
     </div>
+
+    <div class="col-12 p-fluid">
+      <label for="descricao">Descrição</label>
+      <input pInputText type="text" id="descricao">
+    </div>
+
+    <div class="col-12">
+
+      <label class="block">Vencimento</label>
+      <input pInputText type="text">
+
+      <label class="p-3">Até</label>
+      <input pInputText type="text">
+
+    </div>
+
+    <div class="col-12">
+      <button pButton label="Pesquisar" type="submit"></button>
+    </div>
+
+  </div>
 </div>
