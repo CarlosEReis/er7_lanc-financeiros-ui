@@ -44,6 +44,7 @@
             <th class="text-center">Vencimento</th>
             <th class="text-center">Pagamento</th>
             <th class="text-right">Valor</th>
+            <th class="text-right"></th>
           </tr>
         </ng-template>
 
@@ -53,7 +54,16 @@
             <td>{{lancamento.descricao}}</td>
             <td class="text-center">{{lancamento.dataVencimento}}</td>
             <td class="text-center">{{lancamento.dataPagamento}}</td>
-            <td class="text-right">{{lancamento.valor}}</td>
+            <td class="text-right">
+              <span class="lancamento-badge" [class]="lancamento.tipo === 'RECEITA' ? 'status-receita' : 'status-despesa'">{{lancamento.valor}}</span>
+            </td>
+            <td class="text-center">
+                <!-- <a pButton> -->
+                  <a class="pi pi-pencil" style="cursor: pointer;" ></a>
+                  <span class="p-2"></span>
+                  <button style="background-color: white; border: none; cursor: pointer;"><i class="pi pi-trash" ></i></button>
+                <!-- </a> -->
+            </td>
           </tr>
         </ng-template>
 

@@ -15,3 +15,20 @@ label {
         margin: 0 auto;
     }
 }
+
+.lancamento-badge {
+    border-radius:2px;
+    padding:.25em .5rem;
+    text-transform:uppercase;
+    font-weight:700;
+    font-size:16px;
+    letter-spacing:.3px
+}
+.lancamento-badge.status-receita {
+background:#C8E6C9;
+color:#256029
+}
+.lancamento-badge.status-despesa {
+background:#FFCDD2;
+color:#c63737
+}
