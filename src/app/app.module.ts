@@ -10,9 +10,12 @@ import { ButtonModule } from 'primeng/button'
 import { TableModule } from 'primeng/table';
 import { BadgeModule } from 'primeng/badge';
 
+import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
+
 @NgModule({
   declarations: [
     AppComponent,
+    LancamentosPesquisaComponent
   ],
   imports: [
     BrowserModule,
