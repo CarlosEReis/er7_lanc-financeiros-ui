@@ -2,8 +2,16 @@
     <div class="container">
         <div class="grid">
             <div class="col-12">
-                <a href="javascript:;" class="navbar-toggle"><i class="pi pi-bars" style="font-size: 1.5em;"></i></a>
+                <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i class="pi pi-bars" style="font-size: 1.5em;"></i></a>
             </div>
         </div>
     </div>
+
+    <ul class="navbar-menu" [hidden]="!exibindoMenu">
+        <li class="navbar-usuario">José da Silva</li>
+        <li class="navbar-menuitem"><a href="#">Lançamentos</a></li>
+        <li class="navbar-menuitem"><a href="#">Pessoas</a></li>
+        <li class="navbar-menuitem"><a href="#">Logout</a></li>
+    </ul>
+
 </nav>

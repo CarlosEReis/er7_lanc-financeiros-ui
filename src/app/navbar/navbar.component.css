@@ -7,3 +7,45 @@
 .navbar-toggle {
     color: #fff;
 }
+
+.navbar-menu {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    width: 250px;
+    margin: 0px;
+    padding: 0px;
+    z-index: 999;
+
+    background-color: #3a3633;
+
+    list-style: none;
+}
+
+.navbar-usuario {
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 15px;;
+    border-bottom: 1px solid #525151;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #fff;
+}
+
+.navbar-menuitem {
+    padding: 15px;
+}
+
+.navbar-menuitem:hover {
+    background-color: #5e5853;
+}
+
+.navbar-menuitem a {
+    color: #c0bbb7;
+    text-decoration: none;
+}
+
+.navbar-menuitem a:hover {
+    color: #fff;
+}
