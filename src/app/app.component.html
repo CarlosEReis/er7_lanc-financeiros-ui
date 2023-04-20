@@ -35,7 +35,7 @@
   <div class="grid">
     <div class="col-12">
 
-      <p-table [value]="lancamentos" [paginator]="true" [rows]="2">
+      <p-table [value]="lancamentos" [paginator]="true" [rows]="2" [responsive]="true" >
 
         <ng-template pTemplate="header">
           <tr>
@@ -50,11 +50,12 @@
 
         <ng-template pTemplate="body" let-lancamento>
           <tr>
-            <td>{{lancamento.pessoa}}</td>
-            <td>{{lancamento.descricao}}</td>
-            <td class="text-center">{{lancamento.dataVencimento}}</td>
-            <td class="text-center">{{lancamento.dataPagamento}}</td>
+            <td><span class="p-column-title">Pessoa</span> {{lancamento.pessoa}}</td>
+            <td><span class="p-column-title">Descrição</span>{{lancamento.descricao}}</td>
+            <td class="text-center"><span class="p-column-title">Vencimento</span>{{lancamento.dataVencimento}}</td>
+            <td class="text-center"><span class="p-column-title">Pagamento</span>{{lancamento.dataPagamento}}</td>
             <td class="text-right">
+              <span class="p-column-title">Valor</span>
               <span class="lancamento-badge" [class]="lancamento.tipo === 'RECEITA' ? 'status-receita' : 'status-despesa'">{{lancamento.valor}}</span>
             </td>
             <td class="text-center">
