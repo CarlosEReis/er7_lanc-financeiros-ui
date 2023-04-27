@@ -38,12 +38,12 @@
             
             <div class="col-6 p-fluid">
                 <label for="categoria">Categoria</label>
-                <input pInputText id="categoria" type="text">
+                <p-dropdown [options]="categorias" placeholder="Selecione uma categoria"></p-dropdown>
             </div>
             
             <div class="col-6 p-fluid">
                 <label for="pessoa">Pessoa</label>
-                <input pInputText id="pessoa" type="text">
+                <p-dropdown [options]="pessoas" placeholder="Selecine uma pessoa" [filter]="true"></p-dropdown>
             </div>
             
             <div class="col-12 p-fluid">

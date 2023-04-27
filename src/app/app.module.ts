@@ -9,6 +9,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { StyleClassModule } from 'primeng/styleclass';
 import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
 import { ButtonModule } from 'primeng/button'
 import { TableModule } from 'primeng/table';
@@ -40,7 +41,8 @@ import { FormsModule } from '@angular/forms';
     TooltipModule,
     InputTextareaModule,
     SelectButtonModule,
-    FormsModule
+    FormsModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]
