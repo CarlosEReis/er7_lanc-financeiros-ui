@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { StyleClassModule } from 'primeng/styleclass';
 import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
@@ -42,7 +43,8 @@ import { FormsModule } from '@angular/forms';
     InputTextareaModule,
     SelectButtonModule,
     FormsModule,
-    DropdownModule
+    DropdownModule,
+    InputNumberModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
