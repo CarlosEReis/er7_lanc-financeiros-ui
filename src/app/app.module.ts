@@ -8,6 +8,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { StyleClassModule } from 'primeng/styleclass';
+import { InputMask, InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
@@ -39,14 +40,15 @@ import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.compo
     ButtonModule,
     CalendarModule,
     InputTextModule,
+    InputMaskModule,
+    InputNumberModule,
     TableModule,
     StyleClassModule,
     TooltipModule,
     InputTextareaModule,
     SelectButtonModule,
     FormsModule,
-    DropdownModule,
-    InputNumberModule 
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]
