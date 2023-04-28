@@ -29,8 +29,11 @@
             <div class="col-9 p-fluid field">
                 <label for="descricao">Descrição</label>
                 <input pInputText name="descricao" id="descricao" required minlength="5" ngModel #descricao="ngModel" aria-describedby="descricao-help">
-                <small *ngIf="descricao.hasError('required') && descricao.dirty" id="descricao-help" class="p-error block">O Campo descrição é obrigadtório.</small>
-                <small *ngIf="descricao.hasError('minLength') && descricao.dirty" id="descricao-help" class="p-error block">Digite no mínimo {{ descricao.errors?.['minlength'].requiredLength }} caracteres.</small>
+
+                <app-message [control]="descricao" id="descricao-help" error="required" text="Preencha o campo descrição."></app-message>
+                <!-- <small *ngIf="descricao.hasError('required') && descricao.dirty" id="descricao-help" class="p-error block">O Campo descrição é obrigatório.</small> -->
+                <app-message [control]="descricao" id="descricao-help" error="minlength" text="Digite no mínimo {{ descricao.errors?.['minlength']?.requiredLength }} caracteres."></app-message>
+                <!-- <small *ngIf="descricao.hasError('minLength') && descricao.dirty" id="descricao-help" class="p-error block">Digite no mínimo {{ descricao.errors?.['minlength'].requiredLength }} caracteres.</small> -->
             </div>
 
             <div class="col-3 p-fluid field">
