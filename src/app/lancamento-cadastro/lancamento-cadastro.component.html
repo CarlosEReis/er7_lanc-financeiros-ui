@@ -1,52 +1,54 @@
 <div class="container">
 
-    <form action="">
+    <form >
         <div class="grid">
     
             <div class="col-12">
                 <h1>Novo Lançamento</h1>
             </div>
         
-            <div class="col-12">
+            <div class="col-12 field">
                 <p-selectButton name="tipo" #tipo [options]="tipos" [(ngModel)]="value" optionLabel="label" optionValue="value"></p-selectButton>
             </div>
 
-            <div class="col-3 p-fluid">
+            <div class="col-3 p-fluid field">
                 <label for="vencimento">Vencimento</label>
-                <p-calendar id="vencimento" type="text"></p-calendar>
+                <p-calendar id="vencimento"></p-calendar>
             </div>
     
-            <div class="col-3 p-fluid" *ngIf="tipo.value == 'RECEITA'"> 
+            <div class="col-3 p-fluid field" *ngIf="tipo.value == 'RECEITA'"> 
                 <label for="recebimento">Recebimento</label>
-                <p-calendar id="recebimento" type="text"></p-calendar>
+                <p-calendar id="recebimento"></p-calendar>
             </div>
 
-            <div class="col-3 p-fluid" *ngIf="tipo.value == 'DESPESA'">
+            <div class="col-3 p-fluid field" *ngIf="tipo.value == 'DESPESA'">
                 <label for="pagamento" >Pagamento</label>
-                <p-calendar id="pagamento" type="text"></p-calendar>
+                <p-calendar id="pagamento"></p-calendar>
             </div>
     
-            <div class="col-9 p-fluid">
+            <div class="col-9 p-fluid field">
                 <label for="descricao">Descrição</label>
-                <input pInputText id="descricao" type="text">
+                <input pInputText name="descricao" id="descricao" required minlength="5" ngModel #descricao="ngModel" aria-describedby="descricao-help">
+                <small *ngIf="descricao.hasError('required') && descricao.dirty" id="descricao-help" class="p-error block">O Campo descrição é obrigadtório.</small>
+                <small *ngIf="descricao.hasError('minLength') && descricao.dirty" id="descricao-help" class="p-error block">Digite no mínimo {{ descricao.errors?.['minlength'].requiredLength }} caracteres.</small>
             </div>
-            
-            <div class="col-3 p-fluid">
+
+            <div class="col-3 p-fluid field">
                 <label for="valor">Valor</label>
                 <p-inputNumber id="valor" type="text" mode="currency" currency="BRL" locale="pt-BR" placeholder="0,00"></p-inputNumber>
             </div>
             
-            <div class="col-6 p-fluid">
+            <div class="col-6 p-fluid field">
                 <label for="categoria">Categoria</label>
                 <p-dropdown [options]="categorias" placeholder="Selecione uma categoria"></p-dropdown>
             </div>
             
-            <div class="col-6 p-fluid">
+            <div class="col-6 p-fluid field">
                 <label for="pessoa">Pessoa</label>
                 <p-dropdown [options]="pessoas" placeholder="Selecine uma pessoa" [filter]="true"></p-dropdown>
             </div>
             
-            <div class="col-12 p-fluid">
+            <div class="col-12 p-fluid field">
                 <label for="observacao">Observação</label>
                 <textarea pInputTextarea id="observacao" rows="4"></textarea>
             </div>
