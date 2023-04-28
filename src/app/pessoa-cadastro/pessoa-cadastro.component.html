@@ -1,52 +1,61 @@
 <div class="container">
-    <form>
+    <form #pessoaForm="ngForm">
         <div class="grid">
             <div class="col-12">
                 <h1>Nova Pessoa</h1>
             </div>
 
-            <div class="col-12 p-fluid">
+            <div class="col-12 p-fluid field">
                 <label for="nome">Nome</label>
-                <input pInputText type="text" id="nome" />
+                <input pInputText type="text" id="nome" name="nome" #nome="ngModel" ngModel required minlength="5"/>
+                <app-message [control]="nome" error="required" text="Preencha o campo 'Nome'."></app-message>
+                <app-message [control]="nome" error="minlength" text="O campo 'Nome' deve ter pelo menos {{ nome.errors?.['minlength']?.requiredLength }} caracteres."></app-message>
             </div>
 
-            <div class="col-12 sm:col-9 p-fluid">
+            <div class="col-12 sm:col-9 p-fluid field">
                 <label for="logradouro">logradouro</label>
-                <input pInputText type="text" id="logradouro" />
+                <input pInputText type="text" id="logradouro" name="logradouro" #logradouro="ngModel" ngModel required />
+                <app-message [control]="logradouro" error="required" text="Preencha o campo 'Logradouro'."></app-message>
             </div>
 
-            <div class="col-12 sm:col-3 p-fluid">
+            <div class="col-12 sm:col-3 p-fluid field">
                 <label for="numero">Número</label>
-                <p-inputNumber id="numero"></p-inputNumber>
+                <input pInputText type="text" id="numero" name="numero" #numero="ngModel" ngModel required/>
+                <app-message [control]="numero" error="required" text="Preencha o campo 'Número'."></app-message>
             </div>
 
-            <div class="col-12 sm:col-12 md:col-4 p-fluid">
+            <div class="col-12 sm:col-12 md:col-4 p-fluid field">
                 <label for="complemento">Complemento</label>
-                <input pInputText type="text" id="complemento" />
+                <input pInputText type="text" id="complemento" name="Complemento" />
             </div>
 
-            <div class="col-12 sm:col-12 md:col-4 p-fluid">
+            <div class="col-12 sm:col-12 md:col-4 p-fluid field">
                 <label for="bairro">Bairro</label>
-                <input pInputText type="text" id="bairro" />
+                <input pInputText type="text" id="bairro"name="bairro" #bairro="ngModel" ngModel required/>
+                <app-message [control]="bairro" error="required" text="Preencha o campo 'Bairro'."></app-message>
             </div>
 
-            <div class="col-12 sm:col-12 md:col-4 p-fluid">
+            <div class="col-12 sm:col-12 md:col-4 p-fluid field">
                 <label for="cep">CEP</label>
-                <p-inputMask id="cep" mask="99999-999"></p-inputMask>
+                <p-inputMask id="cep" mask="99999-999" name="cep" #cep="ngModel" ngModel [required]="true"></p-inputMask>
+                <app-message [control]="cep" error="required" text="Preencha o campo 'CEP."></app-message>
             </div>
             
-            <div class="col-12 sm:col-12 md:col-6 p-fluid">
+            <div class="col-12 sm:col-12 md:col-6 p-fluid field">
                 <label for="cidade">Cidade</label>
-                <input pInputText type="text" id="cidade" />
+                <input pInputText type="text" id="cidade"name="cidade" #cidade="ngModel" ngModel required/>
+                <app-message [control]="cidade" error="required" text="Preencha o campo 'Cidade'."></app-message>
             </div>
 
-            <div class="col-12 sm:col-12 md:col-6 p-fluid">
+            <div class="col-12 sm:col-12 md:col-6 p-fluid field">
                 <label for="estado">Estado</label>
-                <input pInputText type="text" id="estado" />
+                <input pInputText type="text" id="estado" name="estado" #estado="ngModel" ngModel required/>
+                <app-message [control]="estado" error="required" text="Preencha o campo 'Estado'."></app-message>
+
             </div>
 
             <div class="col-12">
-                <p-button type="submit">Salvar</p-button>
+                <p-button type="submit" [disabled]="pessoaForm.invalid?true:false">Salvar</p-button>
                 <span class="p-2"></span>
                 <p-button type="button">Novo</p-button>
                 <span class="p-2"></span>

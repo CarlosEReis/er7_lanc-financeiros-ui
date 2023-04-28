@@ -1,6 +1,6 @@
 <div class="container">
 
-    <form >
+    <form #lancamentoForm="ngForm">
         <div class="grid">
     
             <div class="col-12">
@@ -13,7 +13,8 @@
 
             <div class="col-3 p-fluid field">
                 <label for="vencimento">Vencimento</label>
-                <p-calendar id="vencimento"></p-calendar>
+                <p-calendar id="vencimento" name="vencimento" #vencimento="ngModel" ngModel [required]="true"></p-calendar>
+                <app-message [control]="vencimento" error="required" text="Selecione uma data para o vencimento."></app-message>
             </div>
     
             <div class="col-3 p-fluid field" *ngIf="tipo.value == 'RECEITA'"> 
@@ -38,17 +39,20 @@
 
             <div class="col-3 p-fluid field">
                 <label for="valor">Valor</label>
-                <p-inputNumber id="valor" type="text" mode="currency" currency="BRL" locale="pt-BR" placeholder="0,00"></p-inputNumber>
+                <p-inputNumber id="valor" name="valor" mode="currency" currency="BRL" locale="pt-BR" placeholder="0,00" #valor="ngModel" ngModel [required]="true"></p-inputNumber>
+                <app-message [control]="valor" error="required" text="Digite o valor do lançamento."></app-message>
             </div>
             
             <div class="col-6 p-fluid field">
                 <label for="categoria">Categoria</label>
-                <p-dropdown [options]="categorias" placeholder="Selecione uma categoria"></p-dropdown>
+                <p-dropdown [options]="categorias" placeholder="Selecione uma categoria" name="categoria" #categoria="ngModel" ngModel [required]="true"></p-dropdown>
+                <app-message [control]="categoria" error="required" text="Selecione uma categoria."></app-message>
             </div>
             
             <div class="col-6 p-fluid field">
                 <label for="pessoa">Pessoa</label>
-                <p-dropdown [options]="pessoas" placeholder="Selecine uma pessoa" [filter]="true"></p-dropdown>
+                <p-dropdown [options]="pessoas" placeholder="Selecine uma pessoa" [filter]="true" name="pessoa" #pessoa="ngModel" ngModel [required]="true"></p-dropdown>
+                <app-message [control]="pessoa" error="required" text="Selecione uma pessoa."></app-message>
             </div>
             
             <div class="col-12 p-fluid field">
@@ -57,7 +61,7 @@
             </div>
 
             <div class="col-12">
-                <p-button type="submit">Salvar</p-button>
+                <p-button type="submit" [disabled]="lancamentoForm.invalid?true:false">Salvar</p-button>
                 <span class="p-2"></span>
                 <p-button type="button">Novo</p-button>
                 <span class="p-2"></span>
