@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-interface Pessoa {
+export interface Pessoa {
   codigo: number,
   nome: string,
   endereco: {
