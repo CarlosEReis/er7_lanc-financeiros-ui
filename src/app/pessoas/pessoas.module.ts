@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputMaskModule } from 'primeng/inputmask';
 import { TooltipModule } from 'primeng/tooltip';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -27,7 +28,9 @@ import { TooltipModule } from 'primeng/tooltip';
     ButtonModule,
     InputTextModule,
     InputMaskModule,
-    TooltipModule
+    TooltipModule,
+
+    SharedModule
   ],
   exports: [
     PessoaCadastroComponent,

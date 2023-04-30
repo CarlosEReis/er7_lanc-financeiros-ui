@@ -14,7 +14,7 @@
             <div class="col-3 p-fluid field">
                 <label for="vencimento">Vencimento</label>
                 <p-calendar id="vencimento" name="vencimento" #vencimento="ngModel" ngModel [required]="true"></p-calendar>
-                <!-- <app-message [control]="vencimento" error="required" text="Selecione uma data para o vencimento."></app-message> -->
+                <app-message [control]="vencimento" error="required" text="Selecione uma data para o vencimento."></app-message>
             </div>
     
             <div class="col-3 p-fluid field" *ngIf="tipo.value == 'RECEITA'"> 
@@ -31,28 +31,28 @@
                 <label for="descricao">Descrição</label>
                 <input pInputText name="descricao" id="descricao" required minlength="5" ngModel #descricao="ngModel" aria-describedby="descricao-help">
 
-                <!-- <app-message [control]="descricao" id="descricao-help" error="required" text="Preencha o campo descrição."></app-message> -->
+                <app-message [control]="descricao" id="descricao-help" error="required" text="Preencha o campo descrição."></app-message>
                 <!-- <small *ngIf="descricao.hasError('required') && descricao.dirty" id="descricao-help" class="p-error block">O Campo descrição é obrigatório.</small> -->
-                <!-- <app-message [control]="descricao" id="descricao-help" error="minlength" text="Digite no mínimo {{ descricao.errors?.['minlength']?.requiredLength }} caracteres."></app-message> -->
+                <app-message [control]="descricao" id="descricao-help" error="minlength" text="Digite no mínimo {{ descricao.errors?.['minlength']?.requiredLength }} caracteres."></app-message>
                 <!-- <small *ngIf="descricao.hasError('minLength') && descricao.dirty" id="descricao-help" class="p-error block">Digite no mínimo {{ descricao.errors?.['minlength'].requiredLength }} caracteres.</small> -->
             </div>
 
             <div class="col-3 p-fluid field">
                 <label for="valor">Valor</label>
                 <p-inputNumber id="valor" name="valor" mode="currency" currency="BRL" locale="pt-BR" placeholder="0,00" #valor="ngModel" ngModel [required]="true"></p-inputNumber>
-                <!-- <app-message [control]="valor" error="required" text="Digite o valor do lançamento."></app-message> -->
+                <app-message [control]="valor" error="required" text="Digite o valor do lançamento."></app-message>
             </div>
             
             <div class="col-6 p-fluid field">
                 <label for="categoria">Categoria</label>
                 <p-dropdown [options]="categorias" placeholder="Selecione uma categoria" name="categoria" #categoria="ngModel" ngModel [required]="true"></p-dropdown>
-                <!-- <app-message [control]="categoria" error="required" text="Selecione uma categoria."></app-message> -->
+                <app-message [control]="categoria" error="required" text="Selecione uma categoria."></app-message>
             </div>
             
             <div class="col-6 p-fluid field">
                 <label for="pessoa">Pessoa</label>
                 <p-dropdown [options]="pessoas" placeholder="Selecine uma pessoa" [filter]="true" name="pessoa" #pessoa="ngModel" ngModel [required]="true"></p-dropdown>
-                <!-- <app-message [control]="pessoa" error="required" text="Selecione uma pessoa."></app-message> -->
+                <app-message [control]="pessoa" error="required" text="Selecione uma pessoa."></app-message>
             </div>
             
             <div class="col-12 p-fluid field">
