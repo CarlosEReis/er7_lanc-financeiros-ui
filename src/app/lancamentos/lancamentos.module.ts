@@ -15,6 +15,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 
@@ -27,15 +28,17 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    
     TableModule,
     ButtonModule,
     SelectButtonModule,
-    FormsModule,
     CalendarModule,
     DropdownModule,
     InputTextModule,
     InputNumberModule,
-    InputTextareaModule
+    InputTextareaModule,
+    TooltipModule
   ],
   exports: [
     LancamentoCadastroComponent,
