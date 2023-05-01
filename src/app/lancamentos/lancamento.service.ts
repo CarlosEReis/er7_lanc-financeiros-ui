@@ -3,10 +3,12 @@ import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-export interface LancamentoFiltro {
+export class LancamentoFiltro {
   descricao?: string;
   dataVencimentoDe?: Date;
   dataVencimentoAte?: Date;
+  pagina = 0;
+  itensPorpagona = 5;
 }
 
 @Injectable({
@@ -27,6 +29,9 @@ export class LancamentoService {
 
     let params = new HttpParams();
     
+    params = params.set('page', filtro.pagina);
+    params = params.set('size', filtro.itensPorpagona);
+
     if (filtro.descricao) {
       params = params.set('descricao', filtro.descricao)
     }
@@ -41,7 +46,13 @@ export class LancamentoService {
 
     return this.http.get(`${this.lancamentosUrl}?resumo`, { headers, params })
       .toPromise().then(
-        (response: any) => response['content']
+        (responseAPI: any) => {
+           const resultado ={
+            lancamentos: responseAPI['content'],
+            total: responseAPI['totalElements']
+          };
+          return resultado;
+        }
       );
   }
 }
