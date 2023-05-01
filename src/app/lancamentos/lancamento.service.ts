@@ -1,9 +1,12 @@
+import { DatePipe } from '@angular/common';
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 export interface LancamentoFiltro {
-  descricao: string;
+  descricao?: string;
+  dataVencimentoDe?: Date;
+  dataVencimentoAte?: Date;
 }
 
 @Injectable({
@@ -13,7 +16,10 @@ export class LancamentoService {
 
   lancamentosUrl = 'http://localhost:8080/lancamentos';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private datePipe: DatePipe
+  ) { }
 
   pesquisar(filtro: LancamentoFiltro): Promise<any> { 
     const headers = new HttpHeaders()
@@ -23,6 +29,14 @@ export class LancamentoService {
     
     if (filtro.descricao) {
       params = params.set('descricao', filtro.descricao)
+    }
+
+    if (filtro.dataVencimentoDe) {
+      params = params.set('dataVencimentoDe', this.datePipe.transform(filtro.dataVencimentoDe, 'yyyy-MM-dd')!);
+    }
+  
+    if (filtro.dataVencimentoAte) {
+      params = params.set('dataVencimentoAte', this.datePipe.transform(filtro.dataVencimentoAte, 'yyyy-MM-dd')!);
     }
 
     return this.http.get(`${this.lancamentosUrl}?resumo`, { headers, params })
