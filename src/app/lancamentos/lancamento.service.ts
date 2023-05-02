@@ -8,7 +8,7 @@ export class LancamentoFiltro {
   dataVencimentoDe?: Date;
   dataVencimentoAte?: Date;
   pagina = 0;
-  itensPorpagona = 5;
+  itensPorPagina = 5;
 }
 
 @Injectable({
@@ -30,18 +30,18 @@ export class LancamentoService {
     let params = new HttpParams();
     
     params = params.set('page', filtro.pagina);
-    params = params.set('size', filtro.itensPorpagona);
+    params = params.set('size', filtro.itensPorPagina);
 
     if (filtro.descricao) {
       params = params.set('descricao', filtro.descricao)
     }
 
     if (filtro.dataVencimentoDe) {
-      params = params.set('dataVencimentoDe', this.datePipe.transform(filtro.dataVencimentoDe, 'yyyy-MM-dd')!);
+      params = params.set('dataVencimentoDe', this.datePipe.transform(filtro.dataVencimentoDe, 'yyyy-dd-MM')!);
     }
   
     if (filtro.dataVencimentoAte) {
-      params = params.set('dataVencimentoAte', this.datePipe.transform(filtro.dataVencimentoAte, 'yyyy-MM-dd')!);
+      params = params.set('dataVencimentoAte', this.datePipe.transform(filtro.dataVencimentoAte, 'yyyy-dd-MM')!);
     }
 
     return this.http.get(`${this.lancamentosUrl}?resumo`, { headers, params })
