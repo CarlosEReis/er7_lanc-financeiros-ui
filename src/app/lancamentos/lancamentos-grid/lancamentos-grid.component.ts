@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
+import { LazyLoadEvent, MessageService } from 'primeng/api';
 import { LancamentoService } from '../lancamento.service';
 
 @Component({
@@ -18,7 +18,10 @@ export class LancamentosGridComponent {
 
   @ViewChild('tabelaLancamentos') tabela: any;
 
-  constructor(private lancamentoService: LancamentoService) { }
+  constructor(
+    private lancamentoService: LancamentoService,
+    private messageService: MessageService
+    ) { }
 
   aoMudarDePagina(event: LazyLoadEvent) {
     let pagina = 0
@@ -31,6 +34,11 @@ export class LancamentosGridComponent {
   excluir(codigo: number) {
     this.lancamentoService.excluir(codigo)
     .then(() => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Remover Lancamento',
+        detail: 'Lançamento removido com sucesso.'
+      })
       this.paginaAlteradaEvent.emit(0)
     })
   }
