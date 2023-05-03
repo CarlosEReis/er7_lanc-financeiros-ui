@@ -38,7 +38,12 @@
   <div class="grid">
     <div class="col-12" >
 
-      <app-lancamentos-grid [lancamentos]="lancamentos" [rows]="filtro.itensPorPagina" [totalRegistros]="totalRegistros" (paginaAlteradaEvent)="aoAlterarPagina($event)"></app-lancamentos-grid>
+      <app-lancamentos-grid 
+        [lancamentos]="lancamentos" 
+        [rows]="filtro.itensPorPagina" 
+        [totalRegistros]="totalRegistros" 
+        (paginaAlteradaEvent)="aoAlterarPagina($event)">
+      </app-lancamentos-grid>
 
     </div>
   </div>

@@ -17,18 +17,16 @@ export class LancamentosPesquisaComponent implements OnInit {
   ngOnInit(): void { }
 
   pesquisar(pagina = 0): void {
-    console.log('pesquisa');
     this.lancamentoService.pesquisar(this.filtro)
-    .then(
-      (resultado) => {
-        this.totalRegistros = resultado.total;
-        this.lancamentos = resultado.lancamentos;
-      }
-    );
+      .then(
+        (resultado) => {
+          this.totalRegistros = resultado.total;
+          this.lancamentos = resultado.lancamentos;
+        }
+      );
   }
 
   aoAlterarPagina(pageNumber: any) {
-    console.log('>>>>>>>>>>>>>>>>>>>>> página de número', pageNumber);
     this.filtro.pagina = pageNumber;
     this.pesquisar();
   }

@@ -14,7 +14,6 @@ export class LancamentosGridComponent {
 
   @Output() paginaAlteradaEvent = new EventEmitter();
 
-
   aoMudarDePagina(event: LazyLoadEvent) {
     let pagina = 0
     if (event.first && event.rows) {

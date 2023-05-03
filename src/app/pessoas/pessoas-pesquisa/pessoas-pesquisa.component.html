@@ -1,37 +1,45 @@
 
 <div class="container">
-  <div class="grid">
-    <div class="col-12">
-      <h1>Pesquisa de Pessoas</h1>
-    </div>
 
-    <div class="col-12 p-fluid">
-      <label for="nome">Nome</label>
-      <input pInputText type="text">
-    </div>
+	<form (ngSubmit)="pesquisar()">
+		<div class="grid">
+			<div class="col-12">
+				<h1>Pesquisa de Pessoas</h1>
+			</div>
 
-    <div class="col-12">
-      <button pButton type="submit" label="Pesquisar"></button>
-    </div>
-  </div>
+			<div class="col-12 p-fluid">
+				<label for="nome">Nome</label>
+				<input pInputText type="text" name="nome" [(ngModel)]="filtro.nome">
+			</div>
 
-  <div class="grid">
-    <div class="col-12">
-      <hr>
-    </div>
-  </div>
+			<div class="col-12">
+				<button pButton type="submit" label="Pesquisar"></button>
+			</div>
+		</div>
+	</form>
 
-  <div class="grid">
-    <div class="col-12">
+	<div class="grid">
+		<div class="col-12">
+			<hr>
+		</div>
+	</div>
 
-      <app-pessoas-grid [pessoas]="pessoas"></app-pessoas-grid>
+	<div class="grid">
+		<div class="col-12">
 
-    </div>
-  </div>
+			<app-pessoas-grid 
+				[pessoas]="pessoas" 
+				[rows]="filtro.itensPorPagina" 
+				[totalRecords]="totalRegistros" 
+				(paginaAlteradaEvent)="aoAlterarPagina($event)">
+			</app-pessoas-grid>
 
-  <div class="grid">
-    <div class="col-12">
-      <a pButton label="Nova Pessoa" href="javascript:;"></a></div>
-  </div>
+		</div>
+	</div>
+
+	<div class="grid">
+		<div class="col-12">
+		<a pButton label="Nova Pessoa" href="javascript:;"></a></div>
+	</div>
   
 </div>

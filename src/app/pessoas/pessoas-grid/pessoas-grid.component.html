@@ -1,4 +1,4 @@
-<p-table [value]="pessoas" [paginator]="true" [rows]="5" [responsive]="true">
+<p-table [value]="pessoas" [responsive]="true" [paginator]="true" [rows]="rows" [lazy]="true" [totalRecords]="totalRecords" (onLazyLoad)="aoMudarDePagina($event)">
     <ng-template pTemplate="header">
       <tr>
         <th>Nome</th>
