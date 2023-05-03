@@ -1,5 +1,5 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
-import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
+import { DEFAULT_CURRENCY_CODE ,LOCALE_ID, NgModule } from '@angular/core';
+import { CommonModule, CurrencyPipe, DatePipe, registerLocaleData } from '@angular/common';
 
 import { NavbarComponent } from './navbar/navbar.component';
 
@@ -19,7 +19,8 @@ registerLocaleData(localePt, 'pt-BR')
     NavbarComponent
   ],
   providers: [
-    DatePipe, { provide: LOCALE_ID, useValue: 'pt-BR' }
+    DatePipe, { provide: LOCALE_ID, useValue: 'pt-BR' },
+    CurrencyPipe, { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }
   ]
 })
 export class CoreModule { }

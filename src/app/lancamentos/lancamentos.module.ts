@@ -19,9 +19,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TooltipModule } from 'primeng/tooltip';
 import { SharedModule } from '../shared/shared.module';
 
-
-
-
 @NgModule({
   declarations: [
     LancamentoCadastroComponent,

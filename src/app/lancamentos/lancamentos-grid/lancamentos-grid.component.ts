@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { LazyLoadEvent, MessageService } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { LancamentoService } from '../lancamento.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-lancamentos-grid',
@@ -20,7 +21,9 @@ export class LancamentosGridComponent {
 
   constructor(
     private lancamentoService: LancamentoService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService,
+    private currencyPipe: CurrencyPipe
     ) { }
 
   aoMudarDePagina(event: LazyLoadEvent) {
@@ -29,6 +32,13 @@ export class LancamentosGridComponent {
       pagina = event.first / event.rows;
     }    
     this.paginaAlteradaEvent.emit(pagina)
+  }
+
+  confirmarExclusao(lancamento: any) {
+    this.confirmationService.confirm({
+      message: `Deseja realmente exluir o lançamento <b>${lancamento.descricao}</b> no valor de <b>${this.currencyPipe.transform(lancamento.valor)}</b>.`,
+      accept: () => this.excluir(lancamento.codigo)
+    })
   }
 
   excluir(codigo: number) {

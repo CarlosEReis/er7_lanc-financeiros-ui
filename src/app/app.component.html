@@ -6,3 +6,9 @@
 
 
 <p-toast position="bottom-right"></p-toast>
+<p-confirmDialog header="Confirmação" icon="pi pi-exclamation-triangle" #confirmDialog>
+    <ng-template pTemplate="footer">
+        <button type="button" pButton icon="pi pi-times" label="Não" (click)="confirmDialog.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Sim" (click)="confirmDialog.accept()"></button>
+    </ng-template>
+</p-confirmDialog>
