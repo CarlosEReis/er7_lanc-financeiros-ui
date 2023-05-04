@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { LancamentoService } from '../lancamento.service';
@@ -25,7 +25,7 @@ export class LancamentosGridComponent {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private currencyPipe: CurrencyPipe,
-    private erroHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService
     ) { }
 
   aoMudarDePagina(event: LazyLoadEvent) {
@@ -53,7 +53,7 @@ export class LancamentosGridComponent {
       })
       this.paginaAlteradaEvent.emit(0)
     })
-    .catch(erro => this.erroHandler.handler(erro))
+    .catch(erro => this.errorHandler.handler(erro))
   }
 
 }

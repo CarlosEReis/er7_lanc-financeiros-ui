@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Pessoa } from '../pessoas-pesquisa/pessoas-pesquisa.component';
-import { LazyLoadEvent } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { PessoasService } from '../pessoas.service';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
   selector: 'app-pessoas-grid',
@@ -14,6 +16,14 @@ export class PessoasGridComponent {
   @Input() pessoas: Pessoa[] = []
 
   @Output() paginaAlteradaEvent = new EventEmitter();
+  @ViewChild('tabelaPessoas') tarefa: any;
+
+  constructor(
+    private pessoaService: PessoasService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService,
+    private errorHandler: ErrorHandlerService
+  ) { }
 
   aoMudarDePagina(event: any) {
     let pagina = 0;
@@ -23,4 +33,23 @@ export class PessoasGridComponent {
     this.paginaAlteradaEvent.emit(pagina);
   }
 
+  confirmarExclusao(pessoa: any) {
+    this.confirmationService.confirm({
+      message: `Deseja realmente excluir <b>${pessoa.nome}</b>?`,
+      accept: () => this.excluir(pessoa.codigo)
+    })
+  }
+
+  excluir(codigo: number) {
+    this.pessoaService.excluir(codigo)
+    .then(() => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Remover Pessoa',
+        detail: 'Pessoa removida com sucesso.'
+      })
+      this.paginaAlteradaEvent.emit(0)
+    })
+    .catch(erro => this.errorHandler.handler(erro))
+  }
 }
