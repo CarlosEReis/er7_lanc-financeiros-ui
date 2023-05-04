@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LancamentoFiltro, LancamentoService } from '../lancamento.service';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -12,7 +13,10 @@ export class LancamentosPesquisaComponent implements OnInit {
   filtro = new LancamentoFiltro();
   lancamentos: any[] = [];
 
-  constructor(private lancamentoService: LancamentoService) { }
+  constructor(
+    private lancamentoService: LancamentoService,
+    private errorHandler: ErrorHandlerService
+  ) { }
 
   ngOnInit(): void { }
 
@@ -23,7 +27,8 @@ export class LancamentosPesquisaComponent implements OnInit {
           this.totalRegistros = resultado.total;
           this.lancamentos = resultado.lancamentos;
         }
-      );
+      )
+      .catch(erro => this.errorHandler.handler(erro));
   }
 
   aoAlterarPagina(pageNumber: any) {
