@@ -40,6 +40,7 @@ export class PessoasPesquisaComponent implements OnInit {
           this.totalRegistros = resultado.total
         }
       );
+      
   }
 
   aoAlterarPagina(event: any) {

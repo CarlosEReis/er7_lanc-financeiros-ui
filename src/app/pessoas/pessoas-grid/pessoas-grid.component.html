@@ -22,7 +22,11 @@
         <td>{{ pessoa.nome }}</td>
         <td>{{ pessoa.endereco.cidade }}</td>
         <td class="text-center">{{ pessoa.endereco.estado }}</td>
-        <td class="text-center">{{ pessoa.status === true ? 'Ativo' : 'Inativo'}}</td>
+        <td class="text-center">
+          <a href="javascript:;" [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'" (click)="mudarStatus(pessoa)">
+            {{ pessoa.ativo ? 'Ativo' : 'Inativo'}}
+          </a>
+        </td>
         <td class="text-center">
             <a class="pi pi-pencil" style="cursor: pointer;" pTooltip="Editar" tooltipPosition="left"></a>
             <span class="p-2"></span>

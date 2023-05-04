@@ -38,6 +38,16 @@ export class PessoasService {
       return resultado;
     })
   }
+  
+  mudarStatus(pessoa: any): Promise<void> {
+    const headers = new HttpHeaders()
+    .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+    .append('Content-Type', 'application/json');
+
+    return this.http.put(`${this.pessoasUrl}/${pessoa.codigo}/ativo`, !pessoa.ativo, { headers })
+      .toPromise()
+      .then(() => {null});
+  }
 
   excluir(codigo: number): Promise<void> {
     const headers = new HttpHeaders()

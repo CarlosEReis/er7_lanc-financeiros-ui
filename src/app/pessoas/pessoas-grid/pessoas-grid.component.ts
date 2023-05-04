@@ -33,6 +33,19 @@ export class PessoasGridComponent {
     this.paginaAlteradaEvent.emit(pagina);
   }
 
+  mudarStatus(pessoa: any) {
+    this.pessoaService.mudarStatus(pessoa)
+    .then(() => {
+      this.messageService.add({
+        severity: pessoa.ativo ? 'warn': 'success',
+        summary: 'Alteração de Status',
+        detail: `${pessoa.nome} foi ${pessoa.ativo ? 'desativado' : 'ativado'} com sucesso.`
+      })
+      this.paginaAlteradaEvent.emit(0);
+    })
+    .catch(erro => this.errorHandler.handler(erro));
+  }
+
   confirmarExclusao(pessoa: any) {
     this.confirmationService.confirm({
       message: `Deseja realmente excluir <b>${pessoa.nome}</b>?`,
@@ -48,7 +61,7 @@ export class PessoasGridComponent {
         summary: 'Remover Pessoa',
         detail: 'Pessoa removida com sucesso.'
       })
-      this.paginaAlteradaEvent.emit(0)
+      this.paginaAlteradaEvent.emit(0);
     })
     .catch(erro => this.errorHandler.handler(erro))
   }
