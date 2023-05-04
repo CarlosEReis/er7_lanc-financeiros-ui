@@ -30,13 +30,22 @@ export class PessoasService {
 
     return this.http.get(`${this.pessoasUrl}`, { headers, params })
     .toPromise()
-    .then( (responseAPI: any) => {
-      const resultado = {
-        pessoas: responseAPI['content'],
-        total: responseAPI['totalElements']
-      }
-      return resultado;
-    })
+      .then( (responseAPI: any) => {
+        const resultado = {
+          pessoas: responseAPI['content'],
+          total: responseAPI['totalElements']
+        }
+        return resultado;
+      })
+  }
+
+  listarTodas(): Promise<any> {
+    const headers = new HttpHeaders()
+    .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.get(this.pessoasUrl, { headers })
+      .toPromise()
+      .then((responseAPI: any) => responseAPI.content)
   }
   
   mudarStatus(pessoa: any): Promise<void> {
