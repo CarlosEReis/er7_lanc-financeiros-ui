@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { DEFAULT_CURRENCY_CODE ,LOCALE_ID, NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE ,LOCALE_ID, NgModule, OnInit } from '@angular/core';
 import { CommonModule, CurrencyPipe, DatePipe, registerLocaleData } from '@angular/common';
 
 
 import localePt  from '@angular/common/locales/pt'
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService, PrimeNGConfig } from 'primeng/api';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -53,4 +53,18 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     TranslateService
   ]
 })
-export class CoreModule { }
+export class CoreModule implements OnInit { 
+
+  constructor(
+    private config: PrimeNGConfig, 
+    private translateService: TranslateService
+  ){}
+  
+  ngOnInit(): void {
+    this.translateService.setDefaultLang('pt');
+    this.translateService.get('primeng')
+      .subscribe(res => this.config.setTranslation(res));
+  }
+
+
+}
