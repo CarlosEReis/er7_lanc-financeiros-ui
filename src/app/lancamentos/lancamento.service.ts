@@ -72,6 +72,8 @@ export class LancamentoService {
     .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
     .append('Content-type', 'Application/Json');
 
-    return firstValueFrom(this.http.post<Lancamento>(this.lancamentosUrl, lancamento, {headers}))
+    return firstValueFrom(
+      this.http.post<Lancamento>(this.lancamentosUrl, lancamento, {headers})
+    )
   }
 }
