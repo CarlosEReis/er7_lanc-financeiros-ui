@@ -33,10 +33,32 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.router.snapshot.params['codigo']);
+    const codigoLancamento = this.router.snapshot.params['codigo'];
+    if (codigoLancamento) {
+      this.carregarLancamento(codigoLancamento);
+    } else {
+      this.carregaPessoas();
+      this.carregarCategorias();
+    }
     
-    this.careegaPessoas();
-    this.carregarCategorias();
+  }
+  
+  get editando(){
+    const editando = Boolean(this.router.snapshot.params['codigo']);
+    console.log(editando);
+    
+    return editando;
+  }
+   
+  carregarLancamento(codigo: number) {
+    this.lancamentoService.buscarPorCodigo(codigo)
+    .then((lancamento) => {
+      this.converterDataParaString([lancamento]);
+      this.lancamento = lancamento;
+      this.carregaPessoas();
+      this.carregarCategorias();
+    })
+    .catch(erro => this.errorHandler.handler(erro))
   }
 
   salvar(form: NgForm) {
@@ -63,14 +85,19 @@ export class LancamentoCadastroComponent implements OnInit {
     .catch(erro => this.errorHandler.handler(erro));
   }
 
-  careegaPessoas() {
+  carregaPessoas() {
     this.pessoasService.listarTodas()
     .then(
       (pessoas) => {
-        this.pessoas = 
-        pessoas
-          .filter((peessoa: any) => peessoa.ativo)
-          .map((pessoa: any) => ({ label: pessoa.nome, value: pessoa.codigo }) )
+        if(this.editando) {
+          this.pessoas = pessoas
+          .filter((pessoa: any) => pessoa.ativo || (pessoa.codigo === this.lancamento.pessoa.codigo))
+          .map((pessoa: any) => ({ label: pessoa.nome, value: pessoa.codigo }))
+        } else {
+          this.pessoas = pessoas
+            .filter((pessoa: any) => pessoa.ativo)
+            .map((pessoa: any) => ({ label: pessoa.nome, value: pessoa.codigo }) )
+        }
       }
     )
     .catch(erro => this.errorHandler.handler(erro))
