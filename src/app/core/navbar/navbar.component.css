@@ -38,7 +38,7 @@
 }
 
 .navbar-menuitem:hover {
-    background-color: #5e5853;
+    background-color: #484340;
 }
 
 .navbar-menuitem a {
@@ -46,6 +46,15 @@
     text-decoration: none;
 }
 
+.navbar-menuitem.ativo a {
+    color:#fff;
+
+}
+
 .navbar-menuitem a:hover {
     color: #fff;
+}
+
+.navbar-menuitem.ativo {
+    background-color: #5d5d5d;
 }
