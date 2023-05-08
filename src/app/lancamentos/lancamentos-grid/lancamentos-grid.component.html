@@ -30,7 +30,7 @@
           <span class="lancamento-badge" [class]="lancamento.tipo === 'RECEITA' ? 'status-receita' : 'status-despesa'">{{lancamento.valor | currency: 'BRL'}}</span>
         </td>
         <td class="text-center">
-          <a class="pi pi-pencil" style="cursor: pointer;" pTooltip="Editar" tooltipPosition="left"></a>
+          <a class="pi pi-pencil" style="cursor: pointer;" pTooltip="Editar" tooltipPosition="left" [routerLink]="['/lancamentos', lancamento.codigo]"></a>
           <span class="p-2"></span>
           <button style="background-color: white; border: none; cursor: pointer;"(click)="confirmarExclusao(lancamento)" ><i class="pi pi-trash" pTooltip="Excluir"></i></button>
         </td>
