@@ -5,7 +5,7 @@ import { Lancamento } from 'src/app/core/model';
 import { PessoasService } from 'src/app/pessoas/pessoas.service';
 import { LancamentoService } from '../lancamento.service';
 import { MessageService } from 'primeng/api';
-import { NgForm } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -34,6 +34,7 @@ export class LancamentoCadastroComponent implements OnInit {
 
   ngOnInit(): void {
     const codigoLancamento = this.router.snapshot.params['codigo'];
+    
     if (codigoLancamento) {
       this.carregarLancamento(codigoLancamento);
     } else {
@@ -45,9 +46,7 @@ export class LancamentoCadastroComponent implements OnInit {
   
   get editando(){
     const editando = Boolean(this.router.snapshot.params['codigo']);
-    console.log(editando);
-    
-    return editando;
+    return Boolean(this.lancamento.codigo);
   }
    
   carregarLancamento(codigo: number) {
@@ -62,6 +61,14 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   salvar(form: NgForm) {
+    if (this.editando) {
+      this.atualizarLancamento(form);
+    } else {
+      this.adicioinarLancamento(form);
+    }
+  }
+
+  adicioinarLancamento(form: NgForm) {
     this.lancamentoService.adicionar(this.lancamento)
       .then(() =>{
         this.messageService.add({
@@ -72,6 +79,24 @@ export class LancamentoCadastroComponent implements OnInit {
         form.reset({ tipo: 'RECEITA'});
         this.lancamento = new Lancamento();
       })
+      .catch(erro => this.errorHandler.handler(erro))
+  }
+
+  /*TODO: Aberto uma issue (Edição de Lançamento #2 - https://github.com/CarlosEReis/ER7Money-API/issues/2), pois
+  não é possível editar um lançamento, com uma pessoa inativa*/
+  atualizarLancamento(form: NgForm) {
+    this.lancamentoService.atualizar(this.lancamento)
+      .then(
+        (lancamento) => {
+          this.converterDataParaString([lancamento])
+          this.lancamento = lancamento;
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Edição de Lançamento',
+            detail: 'Lancamento editado com sucesso.'
+          })
+        }
+      )
       .catch(erro => this.errorHandler.handler(erro))
   }
 
