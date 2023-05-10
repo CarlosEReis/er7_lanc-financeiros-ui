@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LancamentoFiltro, LancamentoService } from '../lancamento.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -15,10 +16,13 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   constructor(
     private lancamentoService: LancamentoService,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private title: Title
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.title.setTitle('Pesquisa de Lançamentos');
+  }
 
   pesquisar(pagina = 0): void {
     this.lancamentoService.pesquisar(this.filtro)

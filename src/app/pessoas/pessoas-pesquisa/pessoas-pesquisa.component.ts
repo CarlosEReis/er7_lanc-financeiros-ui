@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PessoaFiltro, PessoasService } from '../pessoas.service';
 import { LazyLoadEvent } from 'primeng/api';
+import { Title } from '@angular/platform-browser';
 
 export interface Pessoa {
   codigo: number;
@@ -28,9 +29,14 @@ export class PessoasPesquisaComponent implements OnInit {
   filtro = new PessoaFiltro();
   pessoas: Pessoa[] = [];
 
-  constructor(private pessoasService: PessoasService) {}
+  constructor(
+    private pessoasService: PessoasService,
+    private title: Title  
+  ) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.title.setTitle('Pesquisa de Pessoas')
+  }
 
   pesquisar(pagina = 0): void {
     this.pessoasService.pesquisar(this.filtro)
@@ -40,7 +46,6 @@ export class PessoasPesquisaComponent implements OnInit {
           this.totalRegistros = resultado.total
         }
       );
-      
   }
 
   aoAlterarPagina(event: any) {
