@@ -63,7 +63,7 @@
             <div class="col-12">
                 <p-button id="btn-salvar" type="submit" [disabled]="lancamentoForm.invalid?true:false">Salvar</p-button>
                 <span class="p-2"></span>
-                <p-button type="button">Novo</p-button>
+                <p-button type="button" id="novo" (click)="novo(lancamentoForm)">Novo</p-button>
                 <span class="p-2"></span>
                 <a routerLink="/lancamentos">Voltar para a pesquisa</a>
             </div>
