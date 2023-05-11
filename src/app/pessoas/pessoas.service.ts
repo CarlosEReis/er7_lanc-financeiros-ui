@@ -14,7 +14,7 @@ export class PessoaFiltro {
 })
 export class PessoasService {
 
-  pessoasUrl = 'http://localhost:8080/pessoas';
+  private pessoasUrl = 'http://localhost:8080/pessoas';
 
   constructor(private http: HttpClient) { }
   
@@ -79,4 +79,22 @@ export class PessoasService {
     )
   }
   
+  atualiza(pessoa: Pessoa): Promise<Pessoa> {
+    const headers = new HttpHeaders()
+    .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+    .append('Content-Type', 'Application/Json');
+
+    return firstValueFrom(
+      this.http.put<Pessoa>(`${this.pessoasUrl}/${pessoa.codigo}`, pessoa,{ headers })
+    )
+  }
+
+  buscarPeloCodigo(codigo: number): Promise<Pessoa> {
+    const headers = new HttpHeaders()
+    .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return firstValueFrom(
+      this.http.get<Pessoa>(`${this.pessoasUrl}/${codigo}`, { headers })
+    )
+  }
 }

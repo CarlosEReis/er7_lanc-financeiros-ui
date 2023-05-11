@@ -46,12 +46,10 @@ export class LancamentoCadastroComponent implements OnInit {
       this.carregaPessoas();
       this.carregarCategorias();
     }
-    
   }
   
   get editando(){
-    const editando = Boolean(this.activeRouter.snapshot.params['codigo']);
-    return Boolean(this.lancamento.codigo);
+    return Boolean(this.activeRouter.snapshot.params['codigo']);
   }
    
   carregarLancamento(codigo: number) {
@@ -136,11 +134,11 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   novo(form: NgForm) {
-      form.reset();
-      setTimeout(() => {
-        this.lancamento = new Lancamento();
-      }, 1);
-      this.router.navigate(['/lancamentos/novo']);
+    form.reset();
+    setTimeout(() => {
+      this.lancamento = new Lancamento();
+    }, 1);
+    this.router.navigate(['/lancamentos/novo']);
   }
 
   private converterDataParaString(lancamentos: Lancamento[]) {

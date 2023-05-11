@@ -28,7 +28,7 @@
           </a>
         </td>
         <td class="text-center">
-            <a class="pi pi-pencil" style="cursor: pointer;" pTooltip="Editar" tooltipPosition="left"></a>
+            <a class="pi pi-pencil" style="cursor: pointer;" pTooltip="Editar" tooltipPosition="left" [routerLink]="['/pessoas', pessoa.codigo]"></a>
             <span class="p-2"></span>
             <button style="background-color: white; border: none; cursor: pointer;"><i class="pi pi-trash" pTooltip="Excluir" (click)="confirmarExclusao(pessoa)"></i></button>                            
         </td>

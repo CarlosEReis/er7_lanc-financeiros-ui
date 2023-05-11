@@ -12,6 +12,7 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { TooltipModule } from 'primeng/tooltip';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { PessoasRoutingModule } from './pessoas-routing.module';
 
 
 
@@ -26,6 +27,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     RouterModule,
 
+    PessoasRoutingModule,
     TableModule,
     ButtonModule,
     InputTextModule,
