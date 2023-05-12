@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="col-12">
+
+        <div class="mt-8 pt-8">
+            <form #formLogin="ngForm">
+
+                <div class="col-6 m-auto pt-6 pb-8">
+                    <div class="col-12">
+                        <h1>Login</h1>
+                    </div>
+
+                    <div class="col-12 p-fluid field">
+                        <label for="user">Usuário ou E-mail</label>
+                        <input pInputText type="text" placeholder="Digite seu usuário ou e-mail" ngModel required name="usuario" #usuario minlength="10">
+                    </div>
+    
+                    <div class="col-12 p-fluid field">
+                        <label for="Senha">Senha</label>
+                        <input pInputText type="password" placeholder="Digite sua senha" ngModel required name="senha" #senha minlength="6">
+                    </div>
+
+                    <div class="col-12">
+                        <button class="col-12" pButton label="Login" (click)="login(usuario.value, senha.value)" [disabled]="formLogin.invalid"></button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
