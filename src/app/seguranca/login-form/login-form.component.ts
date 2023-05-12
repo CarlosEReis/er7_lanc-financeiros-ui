@@ -8,7 +8,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginFormComponent {
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   login(usuario: string, senha: string) {
     console.log(usuario);
