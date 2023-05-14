@@ -29,7 +29,12 @@ export class AuthService {
       .then((response: any) => {
         this.armazenaToken(response.access_token);
       })
-      .catch(erro => console.error(erro))
+      .catch((errorResponse: any) => {
+        if (errorResponse.status === 400 && errorResponse.error.error === 'invalid_grant') {
+          return Promise.reject('Usuário ou senha inválido.');
+        }
+        return Promise.reject(errorResponse);
+    });
   }
 
   armazenaToken(token: string) {

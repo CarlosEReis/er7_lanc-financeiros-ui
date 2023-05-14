@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { AuthService } from '../auth.service';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
   selector: 'app-login-form',
@@ -8,12 +11,18 @@ import { AuthService } from '../auth.service';
 })
 export class LoginFormComponent {
 
-  constructor(public authService: AuthService) { }
+  constructor(
+    public authService: AuthService,
+    public erroService: ErrorHandlerService,
+    public router: Router
+  ) { }
 
   login(usuario: string, senha: string) {
-    console.log(usuario);
-    console.log(senha);
     this.authService.login(usuario, senha)
+    .then(() => this.router.navigate(['/lancamentos']))
+    .catch(error => 
+      this.erroService.handler(error)
+    )
     
   }
 }
