@@ -48,4 +48,8 @@ export class AuthService {
       this.armazenaToken(token);
     }
   }
+
+  temPermissao(permissao: string) {
+    return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
+  }
 }
