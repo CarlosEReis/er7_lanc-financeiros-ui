@@ -25,7 +25,7 @@ export class AuthService {
 
     const body = `grant_type=password&username=${usuario}&password=${senha}`;
 
-    return firstValueFrom(this.http.post(`${this.oauthTokenUrl}`, body, { headers }))
+    return firstValueFrom(this.http.post(`${this.oauthTokenUrl}`, body, { headers, withCredentials: true }))
       .then((response: any) => {
         this.armazenaToken(response.access_token);
       })
@@ -47,6 +47,25 @@ export class AuthService {
     if (token) {
       this.armazenaToken(token);
     }
+  }
+
+  obterNovoAccessToken() {
+    const headers = new HttpHeaders()
+    .append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEByMA==')
+    .append('Content-Type', 'application/x-www-form-urlencoded');
+
+    const body = 'grant_type=refresh_token';
+
+    return firstValueFrom(this.http.post(this.oauthTokenUrl, body, { headers, withCredentials: true }))
+    .then((response: any) => {
+      this.armazenaToken(response.access_token);
+      console.log('Novo Access Token obtido com sucesso.');
+      return Promise.resolve(null);
+    })
+    .catch((response) => {
+      console.error('Erro ao obter novo Access Token: ', response);
+      return Promise.resolve(null);
+    })
   }
 
   temPermissao(permissao: string) {
