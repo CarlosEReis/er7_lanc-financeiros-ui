@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PessoaFiltro, PessoasService } from '../pessoas.service';
 import { LazyLoadEvent } from 'primeng/api';
 import { Title } from '@angular/platform-browser';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 export interface Pessoa {
   codigo: number;
@@ -31,7 +32,8 @@ export class PessoasPesquisaComponent implements OnInit {
 
   constructor(
     private pessoasService: PessoasService,
-    private title: Title  
+    private title: Title,
+    private errorHandler: ErrorHandlerService
   ) {}
 
   ngOnInit(): void { 
@@ -44,8 +46,8 @@ export class PessoasPesquisaComponent implements OnInit {
         (resultado) => {
           this.pessoas = resultado.pessoas
           this.totalRegistros = resultado.total
-        }
-      );
+        })
+      .catch(erro => this.errorHandler.handler(erro));
   }
 
   aoAlterarPagina(event: any) {
