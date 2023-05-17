@@ -4,6 +4,7 @@ import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api'
 import { LancamentoService } from '../lancamento.service';
 import { CurrencyPipe } from '@angular/common';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { AuthService } from 'src/app/seguranca/auth.service';
 
 @Component({
   selector: 'app-lancamentos-grid',
@@ -25,7 +26,8 @@ export class LancamentosGridComponent {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private currencyPipe: CurrencyPipe,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private authService: AuthService
     ) { }
 
   aoMudarDePagina(event: LazyLoadEvent) {
@@ -56,4 +58,7 @@ export class LancamentosGridComponent {
     .catch(erro => this.errorHandler.handler(erro))
   }
 
+  naoTemPermissao(permissao: string) {
+    return !this.authService.temPermissao(permissao);
+  }
 }
