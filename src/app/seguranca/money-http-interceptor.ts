@@ -20,7 +20,8 @@ export class MoneyHttpInterceptor implements HttpInterceptor {
             return from(this.authService.obterNovoAccessToken())
             .pipe(
                 mergeMap(() => {
-                    if (this.authService.isAccessTokenInvalido()) {
+                    console.log(this.constructor.name);
+                    if (this.authService.isAccessTokenInvalido()) {                        
                         throw new NotAuthenticatedError();
                     }
                     req = req.clone({
@@ -28,6 +29,7 @@ export class MoneyHttpInterceptor implements HttpInterceptor {
                     });
                     return next.handle(req);
                 })
+                
             )
         }
         return next.handle(req);

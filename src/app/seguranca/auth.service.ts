@@ -64,7 +64,7 @@ export class AuthService {
       return Promise.resolve(null);
     })
     .catch((response) => {
-      console.error('Erro ao obter novo Access Token: ', response);
+      console.log('Erro ao obter novo Access Token: ', response);
       return Promise.resolve(null);
     })
   }
