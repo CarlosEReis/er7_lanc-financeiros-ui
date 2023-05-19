@@ -9,7 +9,8 @@ import { firstValueFrom } from 'rxjs';
 })
 export class AuthService {
 
-  oauthTokenUrl = 'http://localhost:8080/oauth/token'
+  oauthTokenUrl = 'http://localhost:8080/oauth/token';
+  tokensRevokeUrl = 'http://localhost:8080/tokens/revoke';
   jwtPayload: any;
 
   constructor(
@@ -85,5 +86,15 @@ export class AuthService {
       }
     }
     return false;
+  }
+
+  limparAccessToken() {
+    localStorage.removeItem('token');
+    this.jwtPayload = null;
+  }
+
+  logout() {
+    return firstValueFrom(this.http.delete(this.tokensRevokeUrl, { withCredentials: true }))
+    .then(() => this.limparAccessToken());
   }
 }
