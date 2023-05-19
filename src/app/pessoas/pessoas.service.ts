@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
 import { Pessoa } from '../core/model';
+import { environment } from 'src/environments/environment';
 
 export class PessoaFiltro {
   nome?: string;
@@ -16,7 +17,7 @@ export class PessoaFiltro {
 })
 export class PessoasService {
 
-  private pessoasUrl = 'http://localhost:8080/pessoas';
+  private pessoasUrl = environment.apiUrl + '/pessoas';
 
   constructor(private http: HttpClient) { }
   

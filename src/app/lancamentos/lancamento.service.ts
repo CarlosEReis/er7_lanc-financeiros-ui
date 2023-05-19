@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Lancamento } from '../core/model';
 import { firstValueFrom } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 export class LancamentoFiltro {
   descricao?: string;
@@ -18,7 +19,7 @@ export class LancamentoFiltro {
 })
 export class LancamentoService {
 
-  lancamentosUrl = 'http://localhost:8080/lancamentos';
+  private lancamentosUrl = environment.apiUrl + '/lancamentos';
 
   constructor(
     private http: HttpClient,
