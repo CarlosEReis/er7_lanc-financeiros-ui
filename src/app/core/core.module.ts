@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DEFAULT_CURRENCY_CODE ,LOCALE_ID, NgModule, OnInit } from '@angular/core';
 import { CommonModule, CurrencyPipe, DatePipe, registerLocaleData } from '@angular/common';
 
@@ -33,6 +33,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   imports: [
     CommonModule,
     RouterModule,
+    HttpClientModule,
 
     TranslateModule.forRoot({
       loader: {
