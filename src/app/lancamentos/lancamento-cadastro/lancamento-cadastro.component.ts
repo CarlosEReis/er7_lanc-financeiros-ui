@@ -83,7 +83,7 @@ export class LancamentoCadastroComponent implements OnInit {
     .then((lancamento) => {
       this.converterDataParaString([lancamento]);
       //this.lancamento = lancamento;
-      this.lancamentoForm.setValue(lancamento);
+      this.lancamentoForm.patchValue(lancamento);
       this.carregaPessoas();
       this.carregarCategorias();
       this.atualizarTituloEdicao();
@@ -91,7 +91,7 @@ export class LancamentoCadastroComponent implements OnInit {
     .catch(erro => this.errorHandler.handler(erro))
   }
 
-  salvar(form: NgForm) {
+  salvar() {
     if (this.editando) {
       this.atualizarLancamento();
     } else {
@@ -120,7 +120,7 @@ export class LancamentoCadastroComponent implements OnInit {
       .then(
         (lancamento) => {
           this.converterDataParaString([lancamento])
-          this.lancamentoForm.setValue(lancamento);
+          this.lancamentoForm.patchValue(lancamento);
           this.messageService.add({
             severity: 'success',
             summary: 'Edição de Lançamento',
