@@ -8,20 +8,20 @@
             <div class="col-12 p-fluid field">
                 <label for="nome">Nome</label>
                 <input pInputText type="text" id="nome" name="nome" #nome="ngModel" [(ngModel)]="pessoa.nome" required minlength="5" placeholder="Digite o nome">
-                <app-message [control]="nome" error="required" text="Preencha o campo 'Nome'."></app-message>
-                 <app-message [control]="nome" error="minlength" text="O campo 'Nome' deve ter pelo menos {{ nome.errors?.['minlength']?.requiredLength }} caracteres."></app-message>
+                <app-message [control]="nome.control" error="required" text="Preencha o campo 'Nome'."></app-message>
+                 <app-message [control]="nome.control" error="minlength" text="O campo 'Nome' deve ter pelo menos {{ nome.errors?.['minlength']?.requiredLength }} caracteres."></app-message>
             </div>
 
             <div class="col-12 sm:col-9 p-fluid field">
                 <label for="logradouro">logradouro</label>
                 <input pInputText type="text" id="logradouro" name="logradouro" #logradouro="ngModel" [(ngModel)]="pessoa.endereco.logradouro" required placeholder="Digite o logradouro"/>
-                <app-message [control]="logradouro" error="required" text="Preencha o campo 'Logradouro'."></app-message>
+                <app-message [control]="logradouro.control" error="required" text="Preencha o campo 'Logradouro'."></app-message>
             </div>
 
             <div class="col-12 sm:col-3 p-fluid field">
                 <label for="numero">Número</label>
                 <input pInputText type="text" id="numero" name="numero" #numero="ngModel" [(ngModel)]="pessoa.endereco.numero" required placeholder="Digite o número"/>
-                <app-message [control]="numero" error="required" text="Preencha o campo 'Número'."></app-message>
+                <app-message [control]="numero.control" error="required" text="Preencha o campo 'Número'."></app-message>
             </div>
 
             <div class="col-12 sm:col-12 md:col-4 p-fluid field">
@@ -32,25 +32,25 @@
             <div class="col-12 sm:col-12 md:col-4 p-fluid field">
                 <label for="bairro">Bairro</label>
                 <input pInputText type="text" id="bairro"name="bairro" #bairro="ngModel" [(ngModel)]="pessoa.endereco.bairro" required placeholder="Digite o bairro"/>
-                <app-message [control]="bairro" error="required" text="Preencha o campo 'Bairro'."></app-message>
+                <app-message [control]="bairro.control" error="required" text="Preencha o campo 'Bairro'."></app-message>
             </div>
 
             <div class="col-12 sm:col-12 md:col-4 p-fluid field">
                 <label for="cep">CEP</label>
                 <p-inputMask id="cep" mask="99999-999" name="cep" #cep="ngModel" [(ngModel)]="pessoa.endereco.cep" [required]="true" placeholder="CEP 00000-000"></p-inputMask>
-                <app-message [control]="cep" error="required" text="Preencha o campo 'CEP."></app-message>
+                <app-message [control]="cep.control" error="required" text="Preencha o campo 'CEP."></app-message>
             </div>
             
             <div class="col-12 sm:col-12 md:col-6 p-fluid field">
                 <label for="cidade">Cidade</label>
                 <input pInputText type="text" id="cidade"name="cidade" #cidade="ngModel" [(ngModel)]="pessoa.endereco.cidade" required placeholder="Digite a cidade"/>
-                <app-message [control]="cidade" error="required" text="Preencha o campo 'Cidade'."></app-message>
+                <app-message [control]="cidade.control" error="required" text="Preencha o campo 'Cidade'."></app-message>
             </div>
 
             <div class="col-12 sm:col-12 md:col-6 p-fluid field">
                 <label for="estado">Estado</label>
                 <input pInputText type="text" id="estado" name="estado" #estado="ngModel" [(ngModel)]="pessoa.endereco.estado" required placeholder="Digite a estado"/>
-                <app-message [control]="estado" error="required" text="Preencha o campo 'Estado'."></app-message>
+                <app-message [control]="estado.control" error="required" text="Preencha o campo 'Estado'."></app-message>
             </div>
 
             <div class="col-12">

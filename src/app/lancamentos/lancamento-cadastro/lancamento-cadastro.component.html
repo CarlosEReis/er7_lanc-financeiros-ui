@@ -1,72 +1,72 @@
 <div class="container">
 
-    <form  (ngSubmit)="salvar()" [formGroup]="lancamentoForm">
-        <div class="grid">
-    
-            <div class="col-12">
-                <h1> {{ editando ? 'Editando' : 'Novo' }} Lançamento</h1>
-            </div>
-        
-            <div class="col-12 field">
-                <p-selectButton name="tipo" [options]="tipos" formControlName="tipo" optionLabel="label" optionValue="value"></p-selectButton>
-            </div>
+	<form  (ngSubmit)="salvar()" [formGroup]="lancamentoForm">
+		<div class="grid">
 
-            <div class="col-3 p-fluid field">
-                <label for="vencimento">Vencimento</label>
-                <p-calendar id="vencimento" name="vencimento" formControlName="dataVencimento" dateFormat="dd/mm/yy" placeholder="Vencimento Dia/Mês/Ano"></p-calendar>
-                <app-message [control]="lancamentoForm.get('tipo')" error="required" text="Selecione uma data para o vencimento."></app-message>
-            </div>
-    
-            <div class="col-3 p-fluid field" *ngIf="lancamentoForm.get('tipo')?.value == 'RECEITA'"> 
-                <label for="recebimento">Recebimento</label>
-                <p-calendar id="recebimento" name="dataPagamento" formControlName="dataPagamento" dateFormat="dd/mm/yy" [placeholder]="lancamentoForm.get('tipo')?.value == 'RECEITA' ? 'Recebimento Dia/Mês/Ano': ''"></p-calendar>
-            </div>
+			<div class="col-12">
+				<h1> {{ editando ? 'Editando' : 'Novo' }} Lançamento</h1>
+			</div>
+	
+			<div class="col-12 field">
+				<p-selectButton name="tipo" [options]="tipos" formControlName="tipo" optionLabel="label" optionValue="value"></p-selectButton>
+			</div>
 
-            <div class="col-3 p-fluid field" *ngIf="lancamentoForm.get('tipo')?.value == 'DESPESA'">
-                <label for="pagamento" >Pagamento</label>
-                <p-calendar id="pagamento" name="dataPagamento" formControlName="dataPagamento" dateFormat="dd/mm/yy" [placeholder]="lancamentoForm.get('tipo')?.value == 'DESPESA' ? 'Pagamento Dia/Mês/Ano': ''"></p-calendar>
-            </div>
-    
-            <div class="col-9 p-fluid field">
-                <label for="descricao">Descrição</label>
-                <input pInputText name="descricao" id="descricao" placeholder="Digite uma descrição" formControlName="descricao" ngModel aria-describedby="descricao-help">
+			<div class="col-3 p-fluid field">
+				<label for="vencimento">Vencimento</label>
+				<p-calendar id="vencimento" name="vencimento" formControlName="dataVencimento" dateFormat="dd/mm/yy" placeholder="Vencimento Dia/Mês/Ano"></p-calendar>
+				<app-message [control]="lancamentoForm.get('tipo')" error="required" text="Selecione uma data para o vencimento."></app-message>
+			</div>
 
-                <app-message [control]="lancamentoForm.get('descricao')" id="descricao-help" error="required" text="Preencha o campo descrição."></app-message>
-                <!-- <small *ngIf="descricao.hasError('required') && descricao.dirty" id="descricao-help" class="p-error block">O Campo descrição é obrigatório.</small> -->
-                <app-message [control]="lancamentoForm.get('descricao')" id="descricao-help" error="minlength" text="Digite no mínimo {{ lancamentoForm.get('descricao')?.errors?.['minlength']?.requiredLength }} caracteres."></app-message>
-                <!-- <small *ngIf="descricao.hasError('minLength') && descricao.dirty" id="descricao-help" class="p-error block">Digite no mínimo {{ descricao.errors?.['minlength'].requiredLength }} caracteres.</small> -->
-            </div>
+			<div class="col-3 p-fluid field" *ngIf="lancamentoForm.get('tipo')?.value == 'RECEITA'"> 
+				<label for="recebimento">Recebimento</label>
+				<p-calendar id="recebimento" name="dataPagamento" formControlName="dataPagamento" dateFormat="dd/mm/yy" [placeholder]="lancamentoForm.get('tipo')?.value == 'RECEITA' ? 'Recebimento Dia/Mês/Ano': ''"></p-calendar>
+			</div>
 
-            <div class="col-3 p-fluid field">
-                <label for="valor">Valor</label>
-                <p-inputNumber id="valor" name="valor" mode="currency" currency="BRL" locale="pt-BR" placeholder="0,00" formControlName="valor" [required]="true"></p-inputNumber>
-                <app-message [control]="lancamentoForm.get('valor')" error="required" text="Digite o valor do lançamento."></app-message>
-            </div>
-            
-            <div class="col-6 p-fluid field" formGroupName="categoria">
-                <label for="categoria">Categoria</label>
-                <p-dropdown id="categoria" [options]="categorias" placeholder="Selecione uma categoria" name="categoria" formControlName="codigo" [required]="true"></p-dropdown>
-                <app-message [control]="lancamentoForm.get('categoria')" error="required" text="Selecione uma categoria."></app-message>
-            </div>
-            
-            <div class="col-6 p-fluid field" formGroupName="pessoa">
-                <label for="pessoa">Pessoa</label>
-                <p-dropdown id="pessoa" [options]="pessoas" placeholder="Selecine uma pessoa" [filter]="true" name="pessoa" formControlName="codigo" [required]="true"></p-dropdown>
-                <app-message [control]="lancamentoForm.get('pessoa')" error="required" text="Selecione uma pessoa."></app-message>
-            </div>
-            
-            <div class="col-12 p-fluid field">
-                <label for="observacao">Observação</label>
-                <textarea pInputTextarea id="observacao" name="observacao" rows="4" placeholder="Digite uma descrição para o seu lançamento" formControlName="observacao"></textarea>
-            </div>
+			<div class="col-3 p-fluid field" *ngIf="lancamentoForm.get('tipo')?.value == 'DESPESA'">
+				<label for="pagamento" >Pagamento</label>
+				<p-calendar id="pagamento" name="dataPagamento" formControlName="dataPagamento" dateFormat="dd/mm/yy" [placeholder]="lancamentoForm.get('tipo')?.value == 'DESPESA' ? 'Pagamento Dia/Mês/Ano': ''"></p-calendar>
+			</div>
 
-            <div class="col-12">
-                <p-button id="btn-salvar" type="submit" [disabled]="lancamentoForm.invalid?true:false">Salvar</p-button>
-                <span class="p-2"></span>
-                <p-button type="button" id="novo" (click)="novo()">Novo</p-button>
-                <span class="p-2"></span>
-                <a routerLink="/lancamentos">Voltar para a pesquisa</a>
-            </div>
-        </div>
-    </form>
+			<div class="col-9 p-fluid field">
+				<label for="descricao">Descrição</label>
+				<input pInputText name="descricao" id="descricao" placeholder="Digite uma descrição" formControlName="descricao" aria-describedby="descricao-help">
+
+				<app-message [control]="lancamentoForm.get('descricao')" id="descricao-help" error="obrigatorio" text="Preencha o campo descrição (Obrigatório)."></app-message>
+				<!-- <small *ngIf="descricao.hasError('required') && descricao.dirty" id="descricao-help" class="p-error block">O Campo descrição é obrigatório.</small> -->
+				<app-message [control]="lancamentoForm.get('descricao')" id="descricao-help" error="tamanhoMinimo" text="Digite no mínimo {{ lancamentoForm.get('descricao')?.errors?.['tamanhoMinimo']?.tamanho }} caracteres."></app-message>
+				<!-- <small *ngIf="descricao.hasError('minLength') && descricao.dirty" id="descricao-help" class="p-error block">Digite no mínimo {{ descricao.errors?.['minlength'].requiredLength }} caracteres.</small> -->
+			</div>
+
+			<div class="col-3 p-fluid field">
+				<label for="valor">Valor</label>
+				<p-inputNumber id="valor" name="valor" mode="currency" currency="BRL" locale="pt-BR" placeholder="0,00" formControlName="valor" [required]="true"></p-inputNumber>
+				<app-message [control]="lancamentoForm.get('valor')" error="required" text="Digite o valor do lançamento."></app-message>
+			</div>
+			
+			<div class="col-6 p-fluid field" formGroupName="categoria">
+				<label for="categoria">Categoria</label>
+				<p-dropdown id="categoria" [options]="categorias" placeholder="Selecione uma categoria" name="categoria" formControlName="codigo" [required]="true"></p-dropdown>
+				<app-message [control]="lancamentoForm.get('categoria')" error="required" text="Selecione uma categoria."></app-message>
+			</div>
+			
+			<div class="col-6 p-fluid field" formGroupName="pessoa">
+				<label for="pessoa">Pessoa</label>
+				<p-dropdown id="pessoa" [options]="pessoas" placeholder="Selecine uma pessoa" [filter]="true" name="pessoa" formControlName="codigo" [required]="true"></p-dropdown>
+				<app-message [control]="lancamentoForm.get('pessoa')" error="required" text="Selecione uma pessoa."></app-message>
+			</div>
+			
+			<div class="col-12 p-fluid field">
+				<label for="observacao">Observação</label>
+				<textarea pInputTextarea id="observacao" name="observacao" rows="4" placeholder="Digite uma descrição para o seu lançamento" formControlName="observacao"></textarea>
+			</div>
+
+			<div class="col-12">
+				<p-button id="btn-salvar" type="submit" [disabled]="lancamentoForm.invalid?true:false">Salvar</p-button>
+				<span class="p-2"></span>
+				<p-button type="button" id="novo" (click)="novo()">Novo</p-button>
+				<span class="p-2"></span>
+				<a routerLink="/lancamentos">Voltar para a pesquisa</a>
+			</div>
+		</div>
+	</form>
 </div>

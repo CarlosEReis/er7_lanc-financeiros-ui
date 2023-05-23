@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 
 import { MessageService } from 'primeng/api';
 
@@ -64,7 +64,7 @@ export class LancamentoCadastroComponent implements OnInit {
                 tipo: [ 'RECEITA', Validators.required ],
       dataVencimento: [ null, Validators.required ],
        dataPagamento: [],
-           descricao: [ null, [ Validators.required, Validators.minLength(5) ] ],
+           descricao: [ null, [ this.validaObrigatoriedade, this.validaTamanhoMinimo(5) ] ],
                valor: [ null, Validators.required ],
            categoria: this.formbuilder.group({
                         codigo: [ null, Validators.required ],
@@ -78,6 +78,16 @@ export class LancamentoCadastroComponent implements OnInit {
     });
   }
    
+  validaObrigatoriedade(input: FormControl) {
+    return input.value ? null: { obrigatorio: true }
+  }
+
+  validaTamanhoMinimo(tamanho: number) {
+    return (input: FormControl) => {
+      return (!input.value || input.value >= tamanho) ? null: { tamanhoMinimo: { tamanho: tamanho } }
+    }
+  }
+
   carregarLancamento(codigo: number) {
     this.lancamentoService.buscarPorCodigo(codigo)
     .then((lancamento) => {
