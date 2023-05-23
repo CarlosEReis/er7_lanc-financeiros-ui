@@ -20,11 +20,11 @@ import { LancamentoService } from '../lancamento.service';
 export class LancamentoCadastroComponent implements OnInit {
 
   value: string = "RECEITA";
-  lancamento = new Lancamento();
+  // lancamento = new Lancamento();
   tipos: any[];
   categorias: any[] = [];
   pessoas: any[] = [];
-  formulario!: FormGroup;
+  lancamentoForm!: FormGroup;
 
   constructor(
     private pessoasService: PessoasService,
@@ -59,7 +59,7 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   configuraFormulario(): void {
-    this.formulario = this.formbuilder.group({
+    this.lancamentoForm = this.formbuilder.group({
               codigo: [],
                 tipo: [ 'RECEITA', Validators.required ],
       dataVencimento: [ null, Validators.required ],
@@ -82,7 +82,8 @@ export class LancamentoCadastroComponent implements OnInit {
     this.lancamentoService.buscarPorCodigo(codigo)
     .then((lancamento) => {
       this.converterDataParaString([lancamento]);
-      this.lancamento = lancamento;
+      //this.lancamento = lancamento;
+      this.lancamentoForm.setValue(lancamento);
       this.carregaPessoas();
       this.carregarCategorias();
       this.atualizarTituloEdicao();
@@ -92,14 +93,14 @@ export class LancamentoCadastroComponent implements OnInit {
 
   salvar(form: NgForm) {
     if (this.editando) {
-      this.atualizarLancamento(form);
+      this.atualizarLancamento();
     } else {
-      this.adicioinarLancamento(form);
+      this.adicioinarLancamento();
     }
   }
 
-  adicioinarLancamento(form: NgForm) {
-    this.lancamentoService.adicionar(this.lancamento)
+  adicioinarLancamento() {
+    this.lancamentoService.adicionar(this.lancamentoForm.value)
       .then((lancamentoAdicionado) =>{
         this.messageService.add({
           severity: 'success',
@@ -114,12 +115,12 @@ export class LancamentoCadastroComponent implements OnInit {
 
   /*TODO: Aberto uma issue (Edição de Lançamento #2 - https://github.com/CarlosEReis/ER7Money-API/issues/2), pois
   não é possível editar um lançamento, com uma pessoa inativa*/
-  atualizarLancamento(form: NgForm) {
-    this.lancamentoService.atualizar(this.lancamento)
+  atualizarLancamento() {
+    this.lancamentoService.atualizar(this.lancamentoForm.value)
       .then(
         (lancamento) => {
           this.converterDataParaString([lancamento])
-          this.lancamento = lancamento;
+          this.lancamentoForm.setValue(lancamento);
           this.messageService.add({
             severity: 'success',
             summary: 'Edição de Lançamento',
@@ -147,7 +148,7 @@ export class LancamentoCadastroComponent implements OnInit {
       (pessoas) => {
         if(this.editando) {
           this.pessoas = pessoas
-          .filter((pessoa: any) => pessoa.ativo || (pessoa.codigo === this.lancamento.pessoa.codigo))
+          .filter((pessoa: any) => pessoa.ativo || (pessoa.codigo === this.lancamentoForm.get('pessoa.codigo')?.value))
           .map((pessoa: any) => ({ label: pessoa.nome, value: pessoa.codigo }))
         } else {
           this.pessoas = pessoas
@@ -159,11 +160,9 @@ export class LancamentoCadastroComponent implements OnInit {
     .catch(erro => this.errorHandler.handler(erro))
   }
 
-  novo(form: NgForm) {
-    form.reset();
-    setTimeout(() => {
-      this.lancamento = new Lancamento();
-    }, 1);
+  novo() {
+    this.lancamentoForm.reset();
+    this.lancamentoForm.patchValue(new Lancamento());
     this.router.navigate(['/lancamentos/novo']);
   }
 
@@ -178,6 +177,6 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   private atualizarTituloEdicao() {
-    this.title.setTitle(`Edição de Lançamento: ${this.lancamento.descricao}`)
+    this.title.setTitle(`Edição de Lançamento: ${this.lancamentoForm.get('descricao')?.value}`)
   }
 }
