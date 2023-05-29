@@ -84,7 +84,7 @@ export class LancamentoCadastroComponent implements OnInit {
 
   validaTamanhoMinimo(tamanho: number) {
     return (input: FormControl) => {
-      return (!input.value || input.value >= tamanho) ? null: { tamanhoMinimo: { tamanho: tamanho } }
+      return (!input.value || input.value.length >= tamanho) ? null: { tamanhoMinimo: { tamanho: tamanho } }
     }
   }
 
