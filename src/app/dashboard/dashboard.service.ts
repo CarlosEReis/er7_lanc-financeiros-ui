@@ -13,7 +13,7 @@ export class DashboardService {
   constructor(private http: HttpClient) { }
 
   lancamentosPorCategoria(): Promise<any[]> {
-    return this.http.get(`${this.lancamentosUrl}//estatisticas/por-categoria`)
+    return this.http.get(`${this.lancamentosUrl}/estatistica/por-categoria`)
       .toPromise()
       .then((response: any) => response);
   }
