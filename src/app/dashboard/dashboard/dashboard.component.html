@@ -8,7 +8,7 @@
     <div class="col-12 md:col-6 lg:col-6">      
       <p-panel header="Lançamentos por categoria">
 
-        <p-chart type="pie" height="40vh" [data]="pieChartData"></p-chart>
+        <p-chart type="pie" height="40vh" [data]="pieChartData" [options]="optionsPie"></p-chart>
 
       </p-panel>
     </div>
@@ -16,7 +16,7 @@
       <p-panel header="Lançamentos por dia">
 
 
-        <p-chart type="line" height="40vh" [data]="lineChartData"></p-chart>
+        <p-chart type="line" height="40vh" [data]="lineChartData" [options]="optionsLine"></p-chart>
 
       </p-panel>
     </div>
