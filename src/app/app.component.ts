@@ -23,6 +23,6 @@ export class AppComponent {
   }
 
   get isLogin() {
-    return this.router.url === '/login';
+    return this.router.url === '/login' || '';
   }
 }

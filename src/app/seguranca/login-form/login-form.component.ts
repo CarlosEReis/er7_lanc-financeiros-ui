@@ -19,7 +19,7 @@ export class LoginFormComponent {
 
   login(usuario: string, senha: string) {
     this.authService.login(usuario, senha)
-    .then(() => this.router.navigate(['/lancamentos']))
+    .then(() => this.router.navigate(['/dashboard']))
     .catch(error => 
       this.erroService.handler(error)
     )
