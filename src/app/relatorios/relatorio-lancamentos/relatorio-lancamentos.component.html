@@ -1,1 +1,33 @@
-<p>relatorio-lancamentos works!</p>
+<div class="container">
+
+	<form #relatorioForm="ngForm" (ngSubmit)="gerar()">
+		<div class="grid">
+
+			<div class="col-12">
+				<h1>Relatório de lançamentos por Pessoa</h1>
+			</div>
+	
+            <div class="col-12 mt-4"></div>
+
+			<div class="col-3 p-fluid field"> 
+				<label for="vencimentoDe">Vencimento de</label>
+				<p-calendar id="vencimentoDe" name="periodoInicio" [(ngModel)]="periodoInicio" #vencimentoDe="ngModel" dateFormat="dd/mm/yy" placeholder="dd/mm/aaaa" [required]="true"></p-calendar>
+                <small *ngIf="vencimentoDe.hasError('required') && vencimentoDe.dirty" id="vencimentoDe-help" class="p-error block">O Campo 'Vencimento De' é obrigatório.</small>
+            </div>
+            
+            <div class="col-3 p-fluid field">
+                <label for="vencimentoAte">Vencimento até</label>
+				<p-calendar id="vencimentoAte" name="periodofim"  [(ngModel)]="periodofim" #vencimentoAte="ngModel" dateFormat="dd/mm/yy" placeholder="dd/mm/aaaa" [required]="true"></p-calendar>
+                <small *ngIf="vencimentoAte.hasError('required') && vencimentoAte.dirty" id="vencimentoAte-help" class="p-error block">O Campo 'vencimentoAte' é obrigatório.</small>
+			</div>
+
+			<div class="col-12">
+				<button pButton id="btn-gerar" type="submit" [disabled]=relatorioForm.invalid>gerar</button>
+				<span class="p-2"></span>
+				<span class="p-2"></span>
+				<a routerLink="/lancamentos">Voltar para a pesquisa</a>
+			</div>
+		
+        </div>
+	</form>
+</div>
