@@ -52,12 +52,13 @@
                 <input pInputText type="text" id="cidade"name="cidade" #cidade="ngModel" [(ngModel)]="pessoa.endereco.cidade" required placeholder="Digite a cidade"/>
                 <app-message [control]="cidade.control" error="required" text="Preencha o campo 'Cidade'."></app-message>
             </div>
-
+            
             <p-divider class="col-12" align="center">
                 <i class="pi pi-user mr-2 "></i>
-                <span class="p-tag">Contatos &nbsp;</span>
+                <span class="p-tag mr-2">Contatos &nbsp;</span>
+                <p-badge align="rigth" value="+" pTooltip="Adicionar Contato" (click)="prepararNovoContato()" style="cursor: pointer"></p-badge>
             </p-divider>
-
+        
             <div class="col-12">
                 <p-table [value]="pessoa.contatos" [responsive]="true">
                     <ng-template pTemplate="header">
@@ -91,10 +92,16 @@
             <div class="col-12 mt-5">
                 <p-button [id]="salvar" type="submit" [disabled]="pessoaForm.invalid?true:false">Salvar</p-button>
                 <span class="p-2"></span>
-                <p-button type="button" (click)="novo(pessoaForm)">Novo</p-button>
+                <p-button type="button" (click)="novo(pessoaForm)">Nova</p-button>
                 <span class="p-2"></span>
                 <a routerLink="/pessoas">Voltar para a pesquisa</a>
             </div>
         </div>
     </form>
+</div>
+
+<div class="card flex justify-content-center">
+    <p-dialog header="Novo Contato" [(visible)]="exibiContatoForm" [modal]="true" [draggable]="false" [style]="{width: '50vw'}">
+
+    </p-dialog>
 </div>

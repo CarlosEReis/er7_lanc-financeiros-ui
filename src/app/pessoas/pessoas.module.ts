@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { TableModule } from 'primeng/table';
+import { BadgeModule } from 'primeng/badge';
+import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { TooltipModule } from 'primeng/tooltip';
@@ -36,6 +38,8 @@ import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.co
     InputMaskModule,
     TooltipModule,
     DividerModule,
+    BadgeModule,
+    DialogModule,
 
     SharedModule
   ],

@@ -15,6 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PessoaCadastroComponent implements OnInit {
 
   pessoa = new Pessoa();
+  exibiContatoForm = false;
 
   constructor(
     private pessoaService: PessoasService,
@@ -90,6 +91,10 @@ export class PessoaCadastroComponent implements OnInit {
       this.pessoa = new Pessoa();
     }, 1);
     this.router.navigate(['/pessoas/novo'])
+  }
+
+  prepararNovoContato() {
+    this.exibiContatoForm = true;
   }
 
   private atualizarTituloEdicao() {
