@@ -56,7 +56,7 @@
             <p-divider class="col-12" align="center">
                 <i class="pi pi-user mr-2 "></i>
                 <span class="p-tag mr-2">Contatos &nbsp;</span>
-                <p-badge align="rigth" value="+" pTooltip="Adicionar Contato" (click)="prepararNovoContato()" style="cursor: pointer"></p-badge>
+                <p-badge align="rigth" value="+" pTooltip="Adicionar Contato" (click)="prepararNovoContato()" [style]="{cursor: 'pointer'}"></p-badge>
             </p-divider>
         
             <div class="col-12">
@@ -101,7 +101,41 @@
 </div>
 
 <div class="card flex justify-content-center">
-    <p-dialog header="Novo Contato" [(visible)]="exibiContatoForm" [modal]="true" [draggable]="false" [style]="{width: '50vw'}">
+    <p-dialog header="Novo Contato" [(visible)]="exibiContatoForm" [modal]="true" [draggable]="false" [style]="{width: '50vw'}" *ngIf="contato">
+
+        <ng-template pTemplate="header">
+            <span class="text-xl font-bold">Novo Contato</span>
+        </ng-template>
+
+        <form #contatoForm="ngForm" >
+            <div class="grid">
+
+                <div class="col-12 p-fluid field">
+                    <label for="nome">Nome</label>
+                    <input pInputText type="text" id="nome" name="nome" #nome="ngModel" [(ngModel)]="contato.nome" required minlength="5" placeholder="Digite o nome do contato.">
+                    <app-message [control]="nome.control" error="required" text="Preencha o campo 'Nome'."></app-message>
+                    <app-message [control]="nome.control" error="minlength" text="O campo 'Nome' deve ter pelo menos {{ nome.errors?.['minlength']?.requiredLength }} caracteres."></app-message>
+                </div>
+    
+                <div class="col-12 sm:col-12 md:col-6 p-fluid field">
+                    <label for="logradouro">E-mail</label>
+                    <input pInputText email id="email" name="email" #email="ngModel" [(ngModel)]="contato.email" required placeholder="Digite o e-mail do contato"/>
+                   
+                    <app-message [control]="email.control" error="required" text="Preencha o campo 'E-mail'."></app-message>
+                    <app-message [control]="email.control" error="email" text="Digite um e-mail válido."></app-message>
+                </div>
+    
+                <div class="col-12 sm:col-12 md:col-6 p-fluid field">
+                    <label for="numero">Telefone</label>
+                    <p-inputMask name="telefone" [(ngModel)]="contato.telefone" placeholder="(xx) xxxxx-xxxx" mask="(99) 99999-999?9"></p-inputMask>
+                </div>
+    
+            </div>
+        </form>
+    
+        <ng-template pTemplate="footer">
+            <p-button id="salvar-contato"  icon="pi pi-check" [disabled]="contatoForm.invalid?true:false" (click)="false" label="Adicionar" styleClass="p-button-text"></p-button>
+        </ng-template>
 
     </p-dialog>
 </div>
