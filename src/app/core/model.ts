@@ -13,11 +13,18 @@ export class Endereco {
     estado?: string;
 }
 
+export class Contato {
+    nome?: string;
+    email?: string;
+    telefone?: string;
+}
+
 export class Pessoa {
     codigo?: number;
     nome?: string;
     ativo = true;
-    endereco = new Endereco()
+    endereco = new Endereco();
+    contatos = new Array<Contato>;
 }
 
 export class Lancamento {
