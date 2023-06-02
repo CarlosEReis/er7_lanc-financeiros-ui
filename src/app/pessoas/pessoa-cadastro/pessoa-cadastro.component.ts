@@ -87,7 +87,7 @@ export class PessoaCadastroComponent implements OnInit {
     .catch(erro => this.erroHandler.handler(erro)) 
   }
 
-  novo(form: NgForm) {
+  novo(form: NgForm): void {
     form.reset();
     setTimeout(() => {
       this.pessoa = new Pessoa();
@@ -95,27 +95,27 @@ export class PessoaCadastroComponent implements OnInit {
     this.router.navigate(['/pessoas/novo'])
   }
 
-  preparaNovoContato() {
+  preparaNovoContato(): void {
     this.exibiContatoForm = true;
     this.contato = new Contato();
     this.contatoIndex = this.pessoa.contatos.length
   }
 
-  preparaEdicaoContato(index: number) {
+  preparaEdicaoContato(index: number): void {
     this.contato = {...this.pessoa.contatos[index]};
     this.exibiContatoForm = true;
     this.contatoIndex = index;
   }
 
   adicionarContato(form: NgForm, index: number): void {
-    const contato = {...this.contato};
-    console.log(contato);
-    console.log('index metodo', index);
-    console.log('index classe', this.contatoIndex);
-    
+    const contato = {...this.contato};    
     this.pessoa.contatos[this.contatoIndex] = contato;
     form.reset();
     this.exibiContatoForm = false;
+  }
+
+  removerContato(index: number): void {
+    this.pessoa.contatos.splice(index, 1);
   }
 
   private atualizarTituloEdicao() {
