@@ -3,7 +3,7 @@ import { Contato, Pessoa } from 'src/app/core/model';
 import { PessoasService } from '../pessoas.service';
 import { MessageService } from 'primeng/api';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { NgForm } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -97,6 +97,13 @@ export class PessoaCadastroComponent implements OnInit {
   prepararNovoContato() {
     this.exibiContatoForm = true;
     this.contato = new Contato();
+  }
+
+  adicionarContato(form: NgForm): void {
+    const contato = {...this.contato};
+    this.pessoa.contatos.push(contato);
+    form.reset();
+    this.exibiContatoForm = false;
   }
 
   private atualizarTituloEdicao() {

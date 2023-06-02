@@ -107,7 +107,7 @@
             <span class="text-xl font-bold">Novo Contato</span>
         </ng-template>
 
-        <form #contatoForm="ngForm" >
+        <form #contatoForm="ngForm" autocomplete="off">
             <div class="grid">
 
                 <div class="col-12 p-fluid field">
@@ -134,7 +134,7 @@
         </form>
     
         <ng-template pTemplate="footer">
-            <p-button id="salvar-contato"  icon="pi pi-check" [disabled]="contatoForm.invalid?true:false" (click)="false" label="Adicionar" styleClass="p-button-text"></p-button>
+            <p-button id="salvar-contato"  icon="pi pi-check" [disabled]="contatoForm.invalid?true:false" (click)="adicionarContato(contatoForm)" label="Adicionar" styleClass="p-button-text"></p-button>
         </ng-template>
 
     </p-dialog>
