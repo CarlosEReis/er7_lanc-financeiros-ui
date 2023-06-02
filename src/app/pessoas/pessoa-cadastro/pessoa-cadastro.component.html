@@ -56,11 +56,11 @@
             <p-divider class="col-12" align="center">
                 <i class="pi pi-user mr-2 "></i>
                 <span class="p-tag mr-2">Contatos &nbsp;</span>
-                <p-badge align="rigth" value="+" pTooltip="Adicionar Contato" (click)="prepararNovoContato()" [style]="{cursor: 'pointer'}"></p-badge>
+                <p-badge align="rigth" value="+" pTooltip="Adicionar Contato" (click)="preparaNovoContato()" [style]="{cursor: 'pointer'}"></p-badge>
             </p-divider>
         
             <div class="col-12">
-                <p-table [value]="pessoa.contatos" [responsive]="true">
+                <p-table [value]="pessoa.contatos" [responsive]="true" >
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Nome</th>
@@ -69,13 +69,13 @@
                             <th></th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-contato>
+                    <ng-template pTemplate="body" let-contato let-rowIndex="rowIndex">
                         <tr>
                             <td>{{contato.nome}}</td>
                             <td>{{contato.email}}</td>
                             <td>{{contato.telefone}}</td>
                             <td class="text-center">
-                                <a class="pi pi-pencil" style="cursor: pointer;" pTooltip="Editar" tooltipPosition="left" ></a>
+                                <a class="pi pi-pencil" style="cursor: pointer;" pTooltip="Editar" tooltipPosition="left" (click)="preparaEdicaoContato(rowIndex)"></a>
                                 <span class="p-2"></span>
                                 <button style="background-color: white; border: none; cursor: pointer;"><i class="pi pi-trash" pTooltip="Excluir"></i></button>
                               </td>
@@ -124,17 +124,18 @@
                     <app-message [control]="email.control" error="required" text="Preencha o campo 'E-mail'."></app-message>
                     <app-message [control]="email.control" error="email" text="Digite um e-mail válido."></app-message>
                 </div>
-    
+                
                 <div class="col-12 sm:col-12 md:col-6 p-fluid field">
                     <label for="numero">Telefone</label>
-                    <p-inputMask name="telefone" [(ngModel)]="contato.telefone" placeholder="(xx) xxxxx-xxxx" mask="(99) 99999-999?9"></p-inputMask>
+                    <p-inputMask name="telefone" [required]="true" #telefone="ngModel" [(ngModel)]="contato.telefone" placeholder="(xx) xxxxx-xxxx" mask="(99) 99999-999?9"></p-inputMask>
+                    <app-message [control]="telefone.control" error="required" text="Preencha o campo 'Telefone'."></app-message>
                 </div>
     
             </div>
         </form>
     
         <ng-template pTemplate="footer">
-            <p-button id="salvar-contato"  icon="pi pi-check" [disabled]="contatoForm.invalid?true:false" (click)="adicionarContato(contatoForm)" label="Adicionar" styleClass="p-button-text"></p-button>
+            <p-button id="salvar-contato"  icon="pi pi-check" [disabled]="contatoForm.invalid?true:false" (click)="adicionarContato(contatoForm, contatoIndex)" label="Adicionar" styleClass="p-button-text"></p-button>
         </ng-template>
 
     </p-dialog>

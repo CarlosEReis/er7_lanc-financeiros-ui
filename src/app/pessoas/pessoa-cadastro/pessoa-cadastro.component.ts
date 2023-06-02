@@ -17,6 +17,7 @@ export class PessoaCadastroComponent implements OnInit {
   pessoa = new Pessoa();
   contato!: Contato;
   exibiContatoForm = false;
+  contatoIndex!: number;
 
   constructor(
     private pessoaService: PessoasService,
@@ -94,14 +95,25 @@ export class PessoaCadastroComponent implements OnInit {
     this.router.navigate(['/pessoas/novo'])
   }
 
-  prepararNovoContato() {
+  preparaNovoContato() {
     this.exibiContatoForm = true;
     this.contato = new Contato();
+    this.contatoIndex = this.pessoa.contatos.length
   }
 
-  adicionarContato(form: NgForm): void {
+  preparaEdicaoContato(index: number) {
+    this.contato = {...this.pessoa.contatos[index]};
+    this.exibiContatoForm = true;
+    this.contatoIndex = index;
+  }
+
+  adicionarContato(form: NgForm, index: number): void {
     const contato = {...this.contato};
-    this.pessoa.contatos.push(contato);
+    console.log(contato);
+    console.log('index metodo', index);
+    console.log('index classe', this.contatoIndex);
+    
+    this.pessoa.contatos[this.contatoIndex] = contato;
     form.reset();
     this.exibiContatoForm = false;
   }
