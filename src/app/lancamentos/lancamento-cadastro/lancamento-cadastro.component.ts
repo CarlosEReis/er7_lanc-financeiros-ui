@@ -218,6 +218,14 @@ export class LancamentoCadastroComponent implements OnInit {
     this.uploadEmAndamento = false;
   }
 
+  removerAnexo() {
+    this.lancamentoForm.patchValue({
+      anexo: null,
+      urlAnexo: null
+    })
+    this.uploadEmAndamento = false;
+  }
+
   private converterDataParaString(lancamentos: Lancamento[]) {
     for(const lancamento of lancamentos) {
       let offset = new Date().getTimezoneOffset() * 60000;
