@@ -69,7 +69,7 @@
 				  [hidden]="uploadEmAndamento">
 				</p-fileUpload>
 				
-				<p-progressSpinner [hidden]="!uploadEmAndamento" styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s" dir="rtl"></p-progressSpinner>
+				<p-progressSpinner [hidden]="!uploadEmAndamento" styleClass="w-3rem h-3rem" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s" dir="rtl"></p-progressSpinner>
 			</div>
 
 			<div class="col-12 p-fluid" *ngIf="lancamentoForm.get('anexo')?.value" dir="rtl">
@@ -77,7 +77,7 @@
 			</div>
 
 			<div class="col-12">
-				<p-button id="btn-salvar" type="submit" [disabled]="lancamentoForm.invalid?true:false">Salvar</p-button>
+				<p-button id="btn-salvar" type="submit" [disabled]="lancamentoForm.invalid || uploadEmAndamento">Salvar</p-button>
 				<span class="p-2"></span>
 				<p-button type="button" id="novo" (click)="novo()">Novo</p-button>
 				<span class="p-2"></span>
