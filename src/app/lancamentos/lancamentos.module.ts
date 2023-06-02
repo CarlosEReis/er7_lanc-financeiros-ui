@@ -18,6 +18,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ProgressSpinnerModule } from 'primeng/progressspinner'; 
 import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
 import { SharedModule } from '../shared/shared.module';
@@ -45,6 +46,7 @@ import { SharedModule } from '../shared/shared.module';
     InputTextareaModule,
     TooltipModule,
     FileUploadModule,
+    ProgressSpinnerModule,
 
     SharedModule
   ],

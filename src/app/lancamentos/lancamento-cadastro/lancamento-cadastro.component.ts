@@ -11,7 +11,7 @@ import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { CategoriasService } from 'src/app/categorias/categorias.service';
 
 import { LancamentoService } from '../lancamento.service';
-import { HttpEvent, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -26,6 +26,7 @@ export class LancamentoCadastroComponent implements OnInit {
   categorias: any[] = [];
   pessoas: any[] = [];
   lancamentoForm!: FormGroup;
+  uploadEmAndamento = false;
 
   constructor(
     private pessoasService: PessoasService,
@@ -195,12 +196,17 @@ export class LancamentoCadastroComponent implements OnInit {
     return '';
   }
 
+  antesUploadAnexo() {
+    this.uploadEmAndamento = true;
+  }
+
   aoTerminarUploadAnexo(event: any) {
     const anexo = event.originalEvent.body;    
     this.lancamentoForm.patchValue({
       anexo: anexo.nome,
       urlAnexo: anexo.anexo.replace('\\\\', 'https://')
-    })
+    });
+    this.uploadEmAndamento = false;
   }
 
   erroUpload(event: any) {
@@ -208,7 +214,8 @@ export class LancamentoCadastroComponent implements OnInit {
       severity: 'error',
       summary: 'Erro no anexo',
       detail: 'Erro ao tentar enviar o anexo.'
-    })
+    });
+    this.uploadEmAndamento = false;
   }
 
   private converterDataParaString(lancamentos: Lancamento[]) {
