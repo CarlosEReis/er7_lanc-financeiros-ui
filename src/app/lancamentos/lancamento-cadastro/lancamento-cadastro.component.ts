@@ -11,7 +11,7 @@ import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { CategoriasService } from 'src/app/categorias/categorias.service';
 
 import { LancamentoService } from '../lancamento.service';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpEvent, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -76,6 +76,8 @@ export class LancamentoCadastroComponent implements OnInit {
                           nome: []
                       }),
           observacao: [],
+               anexo: [],
+            urlAnexo: [],
     });
   }
    
@@ -183,6 +185,24 @@ export class LancamentoCadastroComponent implements OnInit {
 
   get uploadHeaders(): HttpHeaders {
     return this.lancamentoService.uploadHeaders();
+  }
+
+  get nomeAnexo(): string {
+    const nome: string = this.lancamentoForm.get('anexo')?.value;
+    if (nome) {
+      return nome.substring(nome.indexOf('_'), nome.length);
+    }
+    return '';
+  }
+
+  aoTerminarUploadAnexo(event: any) {
+    const anexo = event.originalEvent.body;
+    
+    this.lancamentoForm.patchValue({
+      anexo: anexo.nome,
+      urlAnexo: anexo.anexo.replace('\\\\', 'https://')
+    })
+    
   }
 
   private converterDataParaString(lancamentos: Lancamento[]) {
