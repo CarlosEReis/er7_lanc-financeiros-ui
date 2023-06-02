@@ -15,9 +15,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PessoaCadastroComponent implements OnInit {
 
   pessoa = new Pessoa();
-  contato!: Contato;
-  exibiContatoForm = false;
-  contatoIndex!: number;
 
   constructor(
     private pessoaService: PessoasService,
@@ -93,29 +90,6 @@ export class PessoaCadastroComponent implements OnInit {
       this.pessoa = new Pessoa();
     }, 1);
     this.router.navigate(['/pessoas/novo'])
-  }
-
-  preparaNovoContato(): void {
-    this.exibiContatoForm = true;
-    this.contato = new Contato();
-    this.contatoIndex = this.pessoa.contatos.length
-  }
-
-  preparaEdicaoContato(index: number): void {
-    this.contato = {...this.pessoa.contatos[index]};
-    this.exibiContatoForm = true;
-    this.contatoIndex = index;
-  }
-
-  adicionarContato(form: NgForm, index: number): void {
-    const contato = {...this.contato};    
-    this.pessoa.contatos[this.contatoIndex] = contato;
-    form.reset();
-    this.exibiContatoForm = false;
-  }
-
-  removerContato(index: number): void {
-    this.pessoa.contatos.splice(index, 1);
   }
 
   private atualizarTituloEdicao() {
