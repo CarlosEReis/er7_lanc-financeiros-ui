@@ -196,13 +196,19 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   aoTerminarUploadAnexo(event: any) {
-    const anexo = event.originalEvent.body;
-    
+    const anexo = event.originalEvent.body;    
     this.lancamentoForm.patchValue({
       anexo: anexo.nome,
       urlAnexo: anexo.anexo.replace('\\\\', 'https://')
     })
-    
+  }
+
+  erroUpload(event: any) {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Erro no anexo',
+      detail: 'Erro ao tentar enviar o anexo.'
+    })
   }
 
   private converterDataParaString(lancamentos: Lancamento[]) {

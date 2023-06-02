@@ -62,7 +62,7 @@
 			
 			<div class="col-6 col-offset-6 md:col-2 md:col-offset-10 p-fluid" *ngIf="!lancamentoForm.get('anexo')?.value">
 				<p-fileUpload [style]="{'width':'100%'}" name="anexo" mode="basic" [auto]="true" [maxFileSize]="100000000"
-				  chooseLabel="Anexar" accept="image/*,application/*" [url]="urlUploadAnexo" [headers]="uploadHeaders" (onUpload)="aoTerminarUploadAnexo($event)">
+				  chooseLabel="Anexar" accept="image/*,application/*" [url]="urlUploadAnexo" [headers]="uploadHeaders" (onUpload)="aoTerminarUploadAnexo($event)" (onError)="erroUpload($event)">
 				</p-fileUpload>
 			</div>
 
