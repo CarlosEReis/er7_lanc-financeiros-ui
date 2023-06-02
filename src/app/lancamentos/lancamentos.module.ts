@@ -14,6 +14,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
+import { FileUploadModule } from 'primeng/fileupload';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { InputTextareaModule } from 'primeng/inputtextarea';
@@ -43,6 +44,7 @@ import { SharedModule } from '../shared/shared.module';
     InputNumberModule,
     InputTextareaModule,
     TooltipModule,
+    FileUploadModule,
 
     SharedModule
   ],

@@ -11,6 +11,7 @@ import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { CategoriasService } from 'src/app/categorias/categorias.service';
 
 import { LancamentoService } from '../lancamento.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -170,10 +171,18 @@ export class LancamentoCadastroComponent implements OnInit {
     .catch(erro => this.errorHandler.handler(erro))
   }
 
-  novo() {
+  novo(): void {
     this.lancamentoForm.reset();
     this.lancamentoForm.patchValue(new Lancamento());
     this.router.navigate(['/lancamentos/novo']);
+  }
+
+  get urlUploadAnexo(): string {
+    return this.lancamentoService.urlUploadAnexo();
+  }
+
+  get uploadHeaders(): HttpHeaders {
+    return this.lancamentoService.uploadHeaders();
   }
 
   private converterDataParaString(lancamentos: Lancamento[]) {
