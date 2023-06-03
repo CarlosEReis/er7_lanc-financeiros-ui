@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { firstValueFrom } from 'rxjs';
 
-import { Pessoa } from '../core/model';
+import { Cidade, Estado, Pessoa } from '../core/model';
 import { environment } from 'src/environments/environment';
 
 export class PessoaFiltro {
@@ -18,6 +18,8 @@ export class PessoaFiltro {
 export class PessoasService {
 
   private pessoasUrl = environment.apiUrl + '/pessoas';
+  private cidadesUrl = environment.apiUrl + '/cidades';
+  private estadosUrls = environment.apiUrl + '/estados';
 
   constructor(private http: HttpClient) { }
   
@@ -76,5 +78,16 @@ export class PessoasService {
     return firstValueFrom(
       this.http.get<Pessoa>(`${this.pessoasUrl}/${codigo}`)
     )
+  }
+
+  listarEstados(): Promise<Estado[]> {
+    return firstValueFrom(
+      this.http.get<Estado[]>(`${this.estadosUrls}`));
+  }
+
+  listarCidades(codigoEstado: number): Promise<Cidade[]> {
+    const params = new HttpParams().set('estado', codigoEstado);
+    return firstValueFrom(
+      this.http.get<Cidade[]>(this.cidadesUrl, { params }));
   }
 }

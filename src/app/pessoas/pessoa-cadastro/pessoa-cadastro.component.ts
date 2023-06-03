@@ -6,6 +6,8 @@ import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { FormControl, NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-pessoa-cadastro',
@@ -22,7 +24,8 @@ export class PessoaCadastroComponent implements OnInit {
     private erroHandler: ErrorHandlerService,
     private title: Title,
     private activeRouter: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
