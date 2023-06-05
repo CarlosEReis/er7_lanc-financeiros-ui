@@ -11,6 +11,7 @@ import { DividerModule } from 'primeng/divider';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputMaskModule } from 'primeng/inputmask';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { SharedModule } from '../shared/shared.module';
 import { PessoasRoutingModule } from './pessoas-routing.module';
@@ -42,6 +43,7 @@ import { PessoaCadastroContatoComponent } from './pessoa-cadastro-contato/pessoa
     DividerModule,
     BadgeModule,
     DialogModule,
+    DropdownModule,
 
     SharedModule
   ],

@@ -17,6 +17,9 @@ import { HttpClient } from '@angular/common/http';
 export class PessoaCadastroComponent implements OnInit {
 
   pessoa = new Pessoa();
+  estados!: any[];
+  cidades!: any[];
+  estadoSelecionado!: number;
 
   constructor(
     private pessoaService: PessoasService,
@@ -36,6 +39,7 @@ export class PessoaCadastroComponent implements OnInit {
     if (codigoPessoa) {      
       this.carregarPessoa(codigoPessoa)
     }
+    this.carregarEstado();
   }
 
   get editando() {
@@ -93,6 +97,21 @@ export class PessoaCadastroComponent implements OnInit {
       this.pessoa = new Pessoa();
     }, 1);
     this.router.navigate(['/pessoas/novo'])
+  }
+
+  carregarEstado() {
+    this.pessoaService.listarEstados()
+      .then(estadosAPI => {
+        this.estados = estadosAPI.map(e => ( { label: e.nome, value: e.codigo } ))
+      });
+  }
+
+  carregarCidades() {
+    this.pessoaService.listarCidades(this.estadoSelecionado)
+      .then(cidadesAPI => {
+        this.cidades = cidadesAPI.map( c => ( { label: c.nome, value: c.codigo } ))
+      })
+      
   }
 
   private atualizarTituloEdicao() {

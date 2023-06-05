@@ -20,13 +20,13 @@
 
             <div class="col-12 sm:col-3 md:col-1 p-fluid field">
                 <label for="numero">Número</label>
-                <input pInputText type="text" id="numero" name="numero" #numero="ngModel" [(ngModel)]="pessoa.endereco.numero" required placeholder="Digite o número"/>
+                <input pInputText type="text" id="numero" name="numero" #numero="ngModel" [(ngModel)]="pessoa.endereco.numero" required placeholder="Nº"/>
                 <app-message [control]="numero.control" error="required" text="Preencha o campo 'Número'."></app-message>
             </div>
 
-            <div class="col-12 sm:col-12 md:col-3 p-fluid field">
+            <div class="col-12 sm:col-12 md:col-2 p-fluid field">
                 <label for="complemento">Complemento</label>
-                <input pInputText type="text" id="complemento" name="Complemento" [(ngModel)]="pessoa.endereco.complemento" placeholder="Digite o complemento"/>
+                <input pInputText type="text" id="complemento" name="Complemento" [(ngModel)]="pessoa.endereco.complemento" placeholder="Complemento"/>
             </div>
 
             <div class="col-12 sm:col-12 md:col-2 p-fluid field">
@@ -35,26 +35,27 @@
                 <app-message [control]="cep.control" error="required" text="Preencha o campo 'CEP."></app-message>
             </div>
 
-            <div class="col-12 sm:col-12 md:col-1 p-fluid field">
+            <div class="col-12 sm:col-12 md:col-2 p-fluid field">
                 <label for="estado">Estado</label>
-                <input pInputText type="text" id="estado" name="estado" #estado="ngModel" [(ngModel)]="pessoa.endereco.estado" required placeholder="Digite a estado"/>
-                <app-message [control]="estado.control" error="required" text="Preencha o campo 'Estado'."></app-message>
+                <p-dropdown id="estado" [options]="estados" [filter]="true" placeholder="UF" name="estado" [required]="true" [(ngModel)]="estadoSelecionado" (onChange)="carregarCidades()"></p-dropdown>
+                <!-- <input pInputText type="text" id="estado" name="estado" #estado="ngModel" [(ngModel)]="pessoa.endereco" required placeholder="Digite a estado"/> -->
+                <!-- <app-message [control]="estado.control" error="required" text="Preencha o campo 'Estado'."></app-message> -->
             </div>
 
+            <div class="col-12 sm:col-12 md:col-6 p-fluid field">
+                <label for="cidade">Cidade</label>
+                <p-dropdown id="cidade" [options]="cidades" placeholder="Selecione uma cidade" name="cidade" [required]="true" [disabled]="cidades?false:true"></p-dropdown>
+                <!-- <input pInputText type="text" id="cidade"name="cidade" #cidade="ngModel" [(ngModel)]="pessoa.endereco.cidade" required placeholder="Digite a cidade"/> -->
+                <!-- <app-message [control]="cidade.control" error="required" text="Preencha o campo 'Cidade'."></app-message> -->
+            </div>
+            
             <div class="col-12 sm:col-12 md:col-6 p-fluid field">
                 <label for="bairro">Bairro</label>
                 <input pInputText type="text" id="bairro"name="bairro" #bairro="ngModel" [(ngModel)]="pessoa.endereco.bairro" required placeholder="Digite o bairro"/>
                 <app-message [control]="bairro.control" error="required" text="Preencha o campo 'Bairro'."></app-message>
             </div>
-            
-            <div class="col-12 sm:col-12 md:col-6 p-fluid field">
-                <label for="cidade">Cidade</label>
-                <input pInputText type="text" id="cidade"name="cidade" #cidade="ngModel" [(ngModel)]="pessoa.endereco.cidade" required placeholder="Digite a cidade"/>
-                <app-message [control]="cidade.control" error="required" text="Preencha o campo 'Cidade'."></app-message>
-            </div>
-            
+                        
             <div class="col-12">
-
                 <app-pessoa-cadastro-contato [contatos]="pessoa.contatos"></app-pessoa-cadastro-contato>
             </div>
 
