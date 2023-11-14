@@ -45,11 +45,11 @@ export class LancamentoService {
     }
 
     if (filtro.dataVencimentoDe) {
-      params = params.set('dataVencimentoDe', this.datePipe.transform(filtro.dataVencimentoDe, 'yyyy-dd-MM')!);
+      params = params.set('dataVencimentoDe', this.datePipe.transform(filtro.dataVencimentoDe, 'yyyy-MM-dd')!);
     }
   
     if (filtro.dataVencimentoAte) {
-      params = params.set('dataVencimentoAte', this.datePipe.transform(filtro.dataVencimentoAte, 'yyyy-dd-MM')!);
+      params = params.set('dataVencimentoAte', this.datePipe.transform(filtro.dataVencimentoAte, 'yyyy-MM-dd')!);
     }
 
     return this.http.get(`${this.lancamentosUrl}?resumo`, { params })
